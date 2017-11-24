@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact_id: MyString
+  opportunity_id: MyString
+  role: MyString
+  is_primary: false
+  is_deleted: false
+  last_activity_date: 2017-11-21 13:06:00
+  created_at: 2017-11-21 13:06:00
+  created_by: MyString
+  updated_at: 2017-11-21 13:06:00
+  last_modified_date: 2017-11-21 13:06:00
+  last_modified_by: MyString
+  system_mod_stamp: MyString
+
+two:
+  contact_id: MyString
+  opportunity_id: MyString
+  role: MyString
+  is_primary: false
+  is_deleted: false
+  last_activity_date: 2017-11-21 13:06:00
+  created_at: 2017-11-21 13:06:00
+  created_by: MyString
+  updated_at: 2017-11-21 13:06:00
+  last_modified_date: 2017-11-21 13:06:00
+  last_modified_by: MyString
+  system_mod_stamp: MyString

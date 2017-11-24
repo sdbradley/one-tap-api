@@ -1,0 +1,83 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  master_record_id: MyString
+  last_name: MyString
+  first_name: MyString
+  salutation: MyString
+  name: MyString
+  email: MyString
+  title: MyString
+  company: MyString
+  street: MyString
+  city: MyString
+  state: MyString
+  postal_code: MyString
+  country: MyString
+  phone: MyString
+  website: MyString
+  description: MyString
+  lead_source: MyString
+  status: MyString
+  industry: MyString
+  rating: MyString
+  annual_revenue: 9.99
+  number_of_employees: 1
+  is_converted: false
+  converted_date: 2017-11-21 12:55:33
+  converted_account_id: MyString
+  converted_contact_id: MyString
+  converted_opportunity_id: MyString
+  is_unread_by_owner: false
+  email_bounced_reason: MyString
+  email_bounced_date: 2017-11-21 12:55:33
+  owner__id: MyString
+  is_deleted: false
+  last_activity_date: 2017-11-21 12:55:33
+  created_at: 2017-11-21 12:55:33
+  created_by: MyString
+  updated_at: 2017-11-21 12:55:33
+  last_modified_date: 2017-11-21 12:55:33
+  last_modified_by: MyString
+  system_mod_stamp: MyString
+
+two:
+  master_record_id: MyString
+  last_name: MyString
+  first_name: MyString
+  salutation: MyString
+  name: MyString
+  email: MyString
+  title: MyString
+  company: MyString
+  street: MyString
+  city: MyString
+  state: MyString
+  postal_code: MyString
+  country: MyString
+  phone: MyString
+  website: MyString
+  description: MyString
+  lead_source: MyString
+  status: MyString
+  industry: MyString
+  rating: MyString
+  annual_revenue: 9.99
+  number_of_employees: 1
+  is_converted: false
+  converted_date: 2017-11-21 12:55:33
+  converted_account_id: MyString
+  converted_contact_id: MyString
+  converted_opportunity_id: MyString
+  is_unread_by_owner: false
+  email_bounced_reason: MyString
+  email_bounced_date: 2017-11-21 12:55:33
+  owner__id: MyString
+  is_deleted: false
+  last_activity_date: 2017-11-21 12:55:33
+  created_at: 2017-11-21 12:55:33
+  created_by: MyString
+  updated_at: 2017-11-21 12:55:33
+  last_modified_date: 2017-11-21 12:55:33
+  last_modified_by: MyString
+  system_mod_stamp: MyString

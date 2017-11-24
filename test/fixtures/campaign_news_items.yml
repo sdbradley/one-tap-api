@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  campaign_news_item_key: MyString
+  campaign_id: MyString
+  subject: MyString
+  body: MyString
+  is_deleted: false
+  created_at: 2017-11-21 12:40:08
+  created_by: MyString
+  updated_at: 2017-11-21 12:40:08
+  updated_by: MyString
+
+two:
+  campaign_news_item_key: MyString
+  campaign_id: MyString
+  subject: MyString
+  body: MyString
+  is_deleted: false
+  created_at: 2017-11-21 12:40:08
+  created_by: MyString
+  updated_at: 2017-11-21 12:40:08
+  updated_by: MyString

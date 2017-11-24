@@ -1,0 +1,131 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  campaign_id: MyString
+  description: MyText
+  parent_id: MyString
+  campaign_type: MyString
+  status: MyString
+  start_date: 
+  end_date: 
+  expected_revenue: 9.99
+  budgeted_cost: 9.99
+  actual_cost: 
+  expected_response: 9.99
+  number_sent: 1
+  number_of_leads: 1
+  number_of_converted_leads: 1
+  number_of_contacts: 1
+  number_of_response: 1
+  number_of_opportunities: 1
+  number_of_won_opportunities: 1
+  amount_all_opportunities: 9.99
+  amount_won_opportunities: 9.99
+  stakeholder__c: MyString
+  partner__c: MyString
+  campaign_news__c: MyString
+  otp_acct_manager_email: MyString
+  otp_acct_manager_phone: MyString
+  otp_acct_manager_title: MyString
+  IQ001__c: MyString
+  IQ002__c: MyString
+  IQ003__c: MyString
+  IQ004__c: MyString
+  IQ005__c: MyString
+  IQ006__c: MyString
+  IQ007__c: MyString
+  IQ008__c: MyString
+  IQ009__c: MyString
+  IQ010__c: MyString
+  IQ011__c: MyString
+  IQ012__c: MyString
+  IQ013__c: MyString
+  IQ014__c: MyString
+  IQ015__c: MyString
+  cover_sheet_text__c: MyString
+  ramp_up_call_scheduled__c: false
+  account_list_sent_for_partner_approval: false
+  partner_approved_account_list: false
+  calling_has_begun__c: false
+  calling_completed__c: false
+  gathering_outstanding_feedback__c: false
+  campaign_completed__c: false
+  list_criteria_zip_code__c: MyString
+  list_criteria_state__c: MyString
+  list_criteria_company_size__c: MyString
+  list_criteria_annual_revenue__c: MyString
+  list_criteria_date_contacted__c: MyString
+  owner__id: MyString
+  is_deleted: false
+  last_activity_date: 2017-11-18 11:05:31
+  created_at: 2017-11-18 11:05:31
+  created_by: MyString
+  updated_at: 2017-11-18 11:05:31
+  last_modified_date: 2017-11-18 11:05:31
+  last_modified_by: MyString
+  system_mod_stamp: MyString
+
+two:
+  campaign_id: MyString
+  description: MyText
+  parent_id: MyString
+  campaign_type: MyString
+  status: MyString
+  start_date: 
+  end_date: 
+  expected_revenue: 9.99
+  budgeted_cost: 9.99
+  actual_cost: 
+  expected_response: 9.99
+  number_sent: 1
+  number_of_leads: 1
+  number_of_converted_leads: 1
+  number_of_contacts: 1
+  number_of_response: 1
+  number_of_opportunities: 1
+  number_of_won_opportunities: 1
+  amount_all_opportunities: 9.99
+  amount_won_opportunities: 9.99
+  stakeholder__c: MyString
+  partner__c: MyString
+  campaign_news__c: MyString
+  otp_acct_manager_email: MyString
+  otp_acct_manager_phone: MyString
+  otp_acct_manager_title: MyString
+  IQ001__c: MyString
+  IQ002__c: MyString
+  IQ003__c: MyString
+  IQ004__c: MyString
+  IQ005__c: MyString
+  IQ006__c: MyString
+  IQ007__c: MyString
+  IQ008__c: MyString
+  IQ009__c: MyString
+  IQ010__c: MyString
+  IQ011__c: MyString
+  IQ012__c: MyString
+  IQ013__c: MyString
+  IQ014__c: MyString
+  IQ015__c: MyString
+  cover_sheet_text__c: MyString
+  ramp_up_call_scheduled__c: false
+  account_list_sent_for_partner_approval: false
+  partner_approved_account_list: false
+  calling_has_begun__c: false
+  calling_completed__c: false
+  gathering_outstanding_feedback__c: false
+  campaign_completed__c: false
+  list_criteria_zip_code__c: MyString
+  list_criteria_state__c: MyString
+  list_criteria_company_size__c: MyString
+  list_criteria_annual_revenue__c: MyString
+  list_criteria_date_contacted__c: MyString
+  owner__id: MyString
+  is_deleted: false
+  last_activity_date: 2017-11-18 11:05:31
+  created_at: 2017-11-18 11:05:31
+  created_by: MyString
+  updated_at: 2017-11-18 11:05:31
+  last_modified_date: 2017-11-18 11:05:31
+  last_modified_by: MyString
+  system_mod_stamp: MyString

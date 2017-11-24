@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_id: MyString
+  activity_date: 2017-11-21 13:14:53
+  description: MyText
+  status: MyString
+  subject: MyString
+  what_id: MyString
+  who_id: MyString
+  is_closed: false
+  created_at: 2017-11-21 13:14:53
+  created_by: MyString
+  updated_at: 2017-11-21 13:14:53
+  last_modified_date: 2017-11-21 13:14:53
+  last_modified_by: MyString
+  system_mod_stamp: MyString
+
+two:
+  account_id: MyString
+  activity_date: 2017-11-21 13:14:53
+  description: MyText
+  status: MyString
+  subject: MyString
+  what_id: MyString
+  who_id: MyString
+  is_closed: false
+  created_at: 2017-11-21 13:14:53
+  created_by: MyString
+  updated_at: 2017-11-21 13:14:53
+  last_modified_date: 2017-11-21 13:14:53
+  last_modified_by: MyString
+  system_mod_stamp: MyString

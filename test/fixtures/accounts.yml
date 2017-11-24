@@ -1,0 +1,77 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_id: MyString
+  name: MyText
+  master_record_id: MyString
+  type: 
+  parent_id: MyString
+  billing_street: MyString
+  billing_city: MyString
+  billing_state: MyString
+  billing_postal_code: MyString
+  billing_country: MyString
+  shipping_street: MyString
+  shipping_city: MyString
+  shipping_state: MyString
+  shipping_postal_code: MyString
+  shipping_country: MyString
+  phone: MyString
+  fax: MyString
+  website: MyString
+  industry: MyString
+  annual_revenue: 9.99
+  number_of_employees: 1
+  description: MyText
+  owner_id: MyString
+  is_otp_client: false
+  stakeholder: MyString
+  number_of_leads: 1
+  latitude: MyString
+  longitude: MyString
+  created_at: 2017-11-14 16:14:39
+  created_by: MyString
+  updated_at: 2017-11-14 16:14:39
+  last_modified_date: 2017-11-14 16:14:39
+  last_modified_by: MyString
+  system_mod_stamp: MyString
+  last_activity_date: 2017-11-14 16:14:39
+  is_deleted: false
+
+two:
+  account_id: MyString
+  name: MyText
+  master_record_id: MyString
+  type: 
+  parent_id: MyString
+  billing_street: MyString
+  billing_city: MyString
+  billing_state: MyString
+  billing_postal_code: MyString
+  billing_country: MyString
+  shipping_street: MyString
+  shipping_city: MyString
+  shipping_state: MyString
+  shipping_postal_code: MyString
+  shipping_country: MyString
+  phone: MyString
+  fax: MyString
+  website: MyString
+  industry: MyString
+  annual_revenue: 9.99
+  number_of_employees: 1
+  description: MyText
+  owner_id: MyString
+  is_otp_client: false
+  stakeholder: MyString
+  number_of_leads: 1
+  latitude: MyString
+  longitude: MyString
+  created_at: 2017-11-14 16:14:39
+  created_by: MyString
+  updated_at: 2017-11-14 16:14:39
+  last_modified_date: 2017-11-14 16:14:39
+  last_modified_by: MyString
+  system_mod_stamp: MyString
+  last_activity_date: 2017-11-14 16:14:39
+  is_deleted: false

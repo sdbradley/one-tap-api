@@ -1,0 +1,93 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  master_record_id: MyString
+  account_id: MyString
+  last_name: MyString
+  first_name: MyString
+  salutation: MyString
+  name: MyString
+  email: MyString
+  title: MyString
+  other_street: MyString
+  other_city: MyString
+  other_state: MyString
+  other_postal_code: MyString
+  other_country: MyString
+  mailing_street: MyString
+  mailing_city: MyString
+  mailing_state: MyString
+  mailing_postal_code: MyString
+  mailing_country: MyString
+  fax: MyString
+  mobile_phone: MyString
+  home_phone: MyString
+  other_phone: MyString
+  assistant_phone: MyString
+  reports_to_id: MyString
+  department: MyString
+  assistant_name: MyString
+  lead_source: MyString
+  birthdate: MyString
+  description: MyString
+  owner_id: MyString
+  is_deleted: false
+  last_cu_request_date: 2017-11-21 12:49:08
+  last_cu_update_date: 2017-11-21 12:49:08
+  email_bounced_reason: MyString
+  email_bounced_date: 2017-11-21 12:49:08
+  receives_email_notifications__c: false
+  is_primary_email_receipient__c: false
+  last_activity_date: 2017-11-21 12:49:08
+  created_at: 2017-11-21 12:49:08
+  created_by: MyString
+  updated_at: 2017-11-21 12:49:08
+  last_modified_date: 2017-11-21 12:49:08
+  last_modified_by: MyString
+  system_mod_stamp: MyString
+
+two:
+  master_record_id: MyString
+  account_id: MyString
+  last_name: MyString
+  first_name: MyString
+  salutation: MyString
+  name: MyString
+  email: MyString
+  title: MyString
+  other_street: MyString
+  other_city: MyString
+  other_state: MyString
+  other_postal_code: MyString
+  other_country: MyString
+  mailing_street: MyString
+  mailing_city: MyString
+  mailing_state: MyString
+  mailing_postal_code: MyString
+  mailing_country: MyString
+  fax: MyString
+  mobile_phone: MyString
+  home_phone: MyString
+  other_phone: MyString
+  assistant_phone: MyString
+  reports_to_id: MyString
+  department: MyString
+  assistant_name: MyString
+  lead_source: MyString
+  birthdate: MyString
+  description: MyString
+  owner_id: MyString
+  is_deleted: false
+  last_cu_request_date: 2017-11-21 12:49:08
+  last_cu_update_date: 2017-11-21 12:49:08
+  email_bounced_reason: MyString
+  email_bounced_date: 2017-11-21 12:49:08
+  receives_email_notifications__c: false
+  is_primary_email_receipient__c: false
+  last_activity_date: 2017-11-21 12:49:08
+  created_at: 2017-11-21 12:49:08
+  created_by: MyString
+  updated_at: 2017-11-21 12:49:08
+  last_modified_date: 2017-11-21 12:49:08
+  last_modified_by: MyString
+  system_mod_stamp: MyString

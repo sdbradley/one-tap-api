@@ -1,0 +1,2 @@
+class OpportunityContactRole < ApplicationRecord
+end

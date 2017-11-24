@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fiscal_year_settings_id: MyString
+  period_type: MyString
+  start_date: 2017-11-21 13:13:12
+  end_date: 2017-11-21 13:13:12
+  quarter_label: MyString
+  period_label: MyString
+  number: 1
+  is_forecasted_period: false
+  system_mod_stamp: MyString
+
+two:
+  fiscal_year_settings_id: MyString
+  period_type: MyString
+  start_date: 2017-11-21 13:13:12
+  end_date: 2017-11-21 13:13:12
+  quarter_label: MyString
+  period_label: MyString
+  number: 1
+  is_forecasted_period: false
+  system_mod_stamp: MyString

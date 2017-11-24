@@ -1,0 +1,2 @@
+class OrderPartner < ApplicationRecord
+end

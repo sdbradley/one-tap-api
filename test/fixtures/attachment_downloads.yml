@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  attachment_download_key: MyString
+  attachment_id: MyString
+  user_key: MyString
+  download_date: 
+  is_deleted: false
+  created_at: 2017-11-18 10:51:58
+  created_by: MyString
+  updated_at: 2017-11-18 10:51:58
+  updated_by: MyString
+
+two:
+  attachment_download_key: MyString
+  attachment_id: MyString
+  user_key: MyString
+  download_date: 
+  is_deleted: false
+  created_at: 2017-11-18 10:51:58
+  created_by: MyString
+  updated_at: 2017-11-18 10:51:58
+  updated_by: MyString

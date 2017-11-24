@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  attachment_id: MyString
+  parent_id: MyString
+  owner_id: MyString
+  name: MyString
+  content_type: MyString
+  body_length: 1
+  body: MyText
+  description: MyText
+  recording_downloaded_date: 
+  recording_downloaded_by: MyString
+  is_private: false
+  is_deleted: false
+  created_at: 2017-11-18 10:48:00
+  created_by: MyString
+  updated_at: 2017-11-18 10:48:00
+  last_modified_date: 2017-11-18 10:48:00
+  last_modified_by: MyString
+  system_mod_stamp: MyString
+
+two:
+  attachment_id: MyString
+  parent_id: MyString
+  owner_id: MyString
+  name: MyString
+  content_type: MyString
+  body_length: 1
+  body: MyText
+  description: MyText
+  recording_downloaded_date: 
+  recording_downloaded_by: MyString
+  is_private: false
+  is_deleted: false
+  created_at: 2017-11-18 10:48:00
+  created_by: MyString
+  updated_at: 2017-11-18 10:48:00
+  last_modified_date: 2017-11-18 10:48:00
+  last_modified_by: MyString
+  system_mod_stamp: MyString
