@@ -1,9 +1,6 @@
 branch-defaults:
-  ADD-AUTH:
-    environment: production
-    group_suffix: null
   master:
-    environment: production
+    environment: prod
 global:
   application_name: one-tap-api
   default_ec2_keyname: one-tap-ec2-key
