@@ -1,4 +1,4 @@
-class V2::Public::ContactsController < ApplicationController
+class V2::ContactsController < ApplicationController
   def index
     contacts = Contact.get(permitted_params)
       response_body = {

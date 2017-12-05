@@ -1,4 +1,4 @@
-class AdminController < ApplicationController
+class V2::AdminController < ApplicationController
   include Authenticatable
   before_action :ensure_admin
 

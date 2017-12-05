@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: one-tap-api-dev
+    environment: one-tap-api
 global:
   application_name: one-tap-api
   default_ec2_keyname: one-tap-ec2-key

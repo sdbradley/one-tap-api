@@ -1,4 +1,4 @@
-class V2::Public::AccountsController < ApplicationController
+class V2::AccountsController < ApplicationController
     def index
         accounts = Account.where(account_type: 'Prospect')
         response_body = {
