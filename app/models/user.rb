@@ -34,14 +34,17 @@ class User < ApplicationRecord
       first_name: first_name,
       last_name: last_name,
       email_address: email_address,
-      prefix: prefix,
-      is_validated: is_validated,
-      roles: roles.map(&:to_h)
+      user_name: user_name,
+      phone: phone,
+      account_id: account_id,
+      receive_texts: receive_texts,
+      is_approved: is_approved,
+      is_deleted: is_deleted
     }
   end
 
-  def get(id)
-    User.find!(id)
+  def self.get(id)
+    User.find(id)
   end
 
   def generate_reset_token
