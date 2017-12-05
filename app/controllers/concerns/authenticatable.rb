@@ -10,7 +10,7 @@ module Authenticatable
       current_user_id = AuthenticationService.get_user_id_from_token(token)
       if current_user_id
         # This should always return an object or struct!
-        @current_user = UserService.find_by_id(current_user_id)
+        @current_user = User.get(current_user_id)
       else
         head(401)
       end
