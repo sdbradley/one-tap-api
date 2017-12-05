@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124170201) do
+ActiveRecord::Schema.define(version: 20171205004232) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "account_id"
@@ -401,6 +401,15 @@ ActiveRecord::Schema.define(version: 20171124170201) do
     t.string   "period_id"
   end
 
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "role_key"
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "is_deleted"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "account_id"
     t.datetime "activity_date"
@@ -417,6 +426,37 @@ ActiveRecord::Schema.define(version: 20171124170201) do
     t.string   "last_modified_by"
     t.string   "system_mod_stamp"
     t.string   "task_id"
+  end
+
+  create_table "user_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "user_role_key"
+    t.string   "user_id"
+    t.string   "user_key"
+    t.string   "role_id"
+    t.string   "role_key"
+    t.boolean  "is_deleted"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "user_key"
+    t.string   "user_name"
+    t.string   "password"
+    t.string   "session_id"
+    t.datetime "session_expires"
+    t.string   "email_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "account_id"
+    t.string   "phone"
+    t.boolean  "receive_texts"
+    t.datetime "last_login_date"
+    t.datetime "last_activity_date"
+    t.boolean  "is_approved"
+    t.boolean  "is_deleted"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
 end

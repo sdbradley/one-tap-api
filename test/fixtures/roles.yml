@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  role_key: MyString
+  name: MyString
+  description: MyString
+  is_deleted: false
+  created_at: 2017-12-04 18:40:19
+  updated_at: 2017-12-04 18:40:19
+
+two:
+  role_key: MyString
+  name: MyString
+  description: MyString
+  is_deleted: false
+  created_at: 2017-12-04 18:40:19
+  updated_at: 2017-12-04 18:40:19
