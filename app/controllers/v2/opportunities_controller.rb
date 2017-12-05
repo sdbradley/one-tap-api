@@ -1,4 +1,4 @@
-class V2::Public::OpportunitiesController < ApplicationController
+class V2::OpportunitiesController < ApplicationController
     def index
         opportunities = Opportunity.get(permitted_params)
         response_body = {

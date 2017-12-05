@@ -1,4 +1,4 @@
-class V2::Public::AttachmentsController < ApplicationController
+class V2::AttachmentsController < ApplicationController
     def index
         attachments = Attachment.where({parent_id: params[:parent_id]})
         response_body = {

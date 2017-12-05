@@ -1,4 +1,4 @@
-class V2::Public::CampaignsController < ApplicationController
+class V2::CampaignsController < ApplicationController
     def index
         campaigns = Campaign.get(permitted_params)
         response_body = {
