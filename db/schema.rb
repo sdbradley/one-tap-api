@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205022319) do
+ActiveRecord::Schema.define(version: 20171220040011) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "account_id"
@@ -164,6 +164,9 @@ ActiveRecord::Schema.define(version: 20171205022319) do
     t.string   "system_mod_stamp"
     t.string   "name"
     t.boolean  "ramp_up_call_completed__c"
+    t.index ["campaign_id"], name: "index_campaigns_on_campaign_id", using: :btree
+    t.index ["parent_id"], name: "index_campaigns_on_parent_id", using: :btree
+    t.index ["partner__c"], name: "index_campaigns_on_partner__c", using: :btree
     t.index ["stakeholder__c"], name: "index_campaigns_on_stakeholder__c", using: :btree
   end
 
@@ -324,6 +327,8 @@ ActiveRecord::Schema.define(version: 20171205022319) do
     t.string   "last_modified_by"
     t.string   "system_mod_stamp"
     t.string   "opportunity_id"
+    t.index ["campaign_id"], name: "index_opportunities_on_campaign_id", using: :btree
+    t.index ["stage_name"], name: "index_opportunities_on_stage_name", using: :btree
   end
 
   create_table "opportunity_contact_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

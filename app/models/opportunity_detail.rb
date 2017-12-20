@@ -1,13 +1,6 @@
-class Opportunity < ApplicationRecord
+class OpportunityDetail < ApplicationRecord
 
-  self.primary_key = "opportunity_id"
-
-  belongs_to :campaign
-  has_many :notes, foreign_key: "parent_id"
-  has_many :opportunity_feedbacks
-  has_many :attachments
-
-  scope :with_partner_of, -> (partner_id) { joins(:campaigns).where({campaign.partner__c => partner_id}) }
+  scope :with_partner_of, -> (partner_id) { where("partner__c = ?", partner_id) }
   scope :by_start_date, -> (date) { where("meeting_date_time__c >= ?", date.to_i) }
   scope :by_end_date, -> (date) { where("meeting_date_time__c < ?", date.to_i) }
   scope :by_stage, -> (stage_name) { where("stage_name=?", stage_name) }
@@ -29,6 +22,7 @@ class Opportunity < ApplicationRecord
       opportunity_id: opportunity_id,
       name: name,
       description: description,
+      partner: partner,
       stage_name: stage_name,
       amount: amount,
       probability: probability,
@@ -41,6 +35,6 @@ class Opportunity < ApplicationRecord
   end
 
   def self.get(params)
-    Opportunity.search(params)
+    OpportunityDetail.search(params)
   end
 end
