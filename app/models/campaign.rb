@@ -12,6 +12,24 @@ class Campaign < ApplicationRecord
   scope :by_start_date, -> (date) { where("start_date >= ?", date.to_i) }
   scope :by_end_date, -> (date) { where("end_date < ?", date.to_i) }
 
+  scope :with_statistics_sum, -> {
+    select('SUM(campaigns.number_sent) as number_sent, 
+    SUM(campaigns.number_of_leads) as number_of_leads, 
+    SUM(campaigns.number_of_converted_leads) as number_of_converted_leads, 
+    SUM(campaigns.number_of_contacts) as number_of_contacts, 
+    SUM(campaigns.number_of_responses) as number_of_responses, 
+    SUM(campaigns.number_of_won_opportunities) as number_of_won_opportunities').
+    select('(select COUNT(id) from opportunities where opportunities.campaign_id=campaigns.campaign_id and opportunities.is_otp_approved__c=1) as number_of_opportunities')
+  }
+  scope :statistics, -> (fields) {
+    query = self
+    query = query.with_statistics_sum
+    query = query.with_partner_of(fields[:partner__c]) if fields[:partner__c].present?
+    query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
+    query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
+    query.group('partner__c')
+  }
+
   scope :search, -> (fields) {
     query = self
     query = query.with_stakeholder_of(fields[:stakeholder__c]) if fields[:stakeholder__c].present?
@@ -20,7 +38,6 @@ class Campaign < ApplicationRecord
     query = query.with_status_of(fields[:status]) if fields[:status].present?
     query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
     query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
-    query
   }
 
   def self.get(params)
@@ -28,6 +45,6 @@ class Campaign < ApplicationRecord
   end
 
   def self.get_statistics(params)
-    Campaign.search(params).select("sum(number_sent) as number_sent", "sum(number_of_leads) as number_of_leads", "sum(number_of_converted_leads) as number_of_converted_leads", "sum(number_of_contacts) as number_of_contacts", "sum(number_of_response) as number_of_response", "sum(number_of_won_opportunities) as number_of_won_opportunities").first
+    Campaign.statistics(params)
   end
 end

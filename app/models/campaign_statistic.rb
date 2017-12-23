@@ -1,0 +1,2 @@
+class CampaignStatistic < ApplicationRecord
+end
