@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220040011) do
+ActiveRecord::Schema.define(version: 20171221041554) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "account_id"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20171220040011) do
     t.integer  "number_of_leads"
     t.integer  "number_of_converted_leads"
     t.integer  "number_of_contacts"
-    t.integer  "number_of_response"
+    t.integer  "number_of_responses"
     t.integer  "number_of_opportunities"
     t.integer  "number_of_won_opportunities"
     t.decimal  "amount_all_opportunities",                             precision: 10
