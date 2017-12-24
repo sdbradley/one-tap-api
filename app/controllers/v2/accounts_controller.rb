@@ -6,4 +6,11 @@ class V2::AccountsController < ApplicationController
         }
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end
+    def show
+        accounts = Account.where(account_id: params[:id])
+        response_body = {
+            accounts: accounts
+        }
+        standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
+    end
 end
