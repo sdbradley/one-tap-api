@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   scope "api" do
     namespace "v2" do
       post "authentication", to: "authentication#create"
-      resources :accounts, only: [:index]
+      resources :accounts, only: [:index, :show]
       resources :attachments, only: [:index]
       resources :opportunities, only: [:index]
       resources :campaigns, only: [:index]
