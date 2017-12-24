@@ -10,7 +10,7 @@ class V2::OpportunitiesController < ApplicationController
   private
   
   def permitted_params
-    params.permit(:start_date, :end_date, :partner_id, :stage_name)
+    params.permit(:start_date, :end_date, :partner__c, :stage_name)
   end
 
 end
