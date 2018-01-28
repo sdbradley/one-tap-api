@@ -1,5 +1,7 @@
 class OpportunityDetail < ApplicationRecord
 
+  self.table_name = "vw_opportunitydetails"
+
   scope :with_partner_of, -> (partner_id) { where("partner__c = ?", partner_id) }
   scope :by_start_date, -> (date) { where("meeting_date_time__c >= ?", date.to_i) }
   scope :by_end_date, -> (date) { where("meeting_date_time__c < ?", date.to_i) }
@@ -7,7 +9,7 @@ class OpportunityDetail < ApplicationRecord
 
   scope :search, -> (fields) {
     query = self
-    query = query.with_partner_of(fields[:partner_id]) if fields[:partner_id].present?
+    query = query.with_partner_of(fields[:partner__c]) if fields[:partner__c].present?
     query = query.by_stage(fields[:stage_name]) if fields[:stage_name].present?
     query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
     query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
@@ -16,7 +18,7 @@ class OpportunityDetail < ApplicationRecord
 
   def to_h
     {
-      id: id,
+      id: opportunity_id,
       account_id: account_id,
       campaign_id: campaign_id,
       opportunity_id: opportunity_id,

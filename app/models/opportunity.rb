@@ -7,7 +7,7 @@ class Opportunity < ApplicationRecord
   has_many :opportunity_feedbacks
   has_many :attachments
 
-  scope :with_partner_of, -> (partner_id) { joins(:campaigns).where({campaign.partner__c => partner_id}) }
+  scope :with_partner_of, -> (partner_id) { joins(:campaigns).where({campaigns.partner__c => partner_id}) }
   scope :by_start_date, -> (date) { where("meeting_date_time__c >= ?", date.to_i) }
   scope :by_end_date, -> (date) { where("meeting_date_time__c < ?", date.to_i) }
   scope :by_stage, -> (stage_name) { where("stage_name=?", stage_name) }
@@ -23,7 +23,7 @@ class Opportunity < ApplicationRecord
 
   def to_h
     {
-      id: id,
+      id: opportunity_id,
       account_id: account_id,
       campaign_id: campaign_id,
       opportunity_id: opportunity_id,

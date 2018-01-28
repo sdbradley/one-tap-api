@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :opportunities, only: [:index]
       resources :campaigns, only: [:index]
       resources :contacts, only: [:index]
+      resources :scorecard, only: [:index]
       get "/news_items", to: "campaigns#index_news"
       get "/statistics", to: "campaigns#statistics"
       resources :users do
