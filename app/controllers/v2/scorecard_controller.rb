@@ -1,16 +1,12 @@
 class V2::ScorecardController < ApplicationController
     def index
-        opportunities = OpportunityDetail.get(permitted_params)
+        scorecard = Scorecard.find(params)
         response_body = {
-            opportunities: opportunities.map(&:to_h)
+            scorecard: scorecard.map(&:to_h)
         }
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end
 
   private
-  
-  def permitted_params
-    params.permit(:start_date, :end_date, :partner__c)
-  end
 
 end
