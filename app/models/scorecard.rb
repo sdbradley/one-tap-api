@@ -37,13 +37,13 @@ class Scorecard
         ifnull(((max(case oppdetails.stage_name when 'Next Steps Established' then oppdetails.count else 0 end)+max(case oppdetails.stage_name when 'On-Site Meeting Set' then oppdetails.count else 0 end)+max(case oppdetails.stage_name when 'Proposal/Price Quote' then oppdetails.count else 0 end)+max(case oppdetails.stage_name when 'Closed Won' then oppdetails.count else 0 end))/((max(case oppdetails.stage_name when 'Next Steps Established' then oppdetails.count else 0 end)+max(case oppdetails.stage_name when 'On-Site Meeting Set' then oppdetails.count else 0 end)+max(case oppdetails.stage_name when 'Proposal/Price Quote' then oppdetails.count else 0 end)+max(case oppdetails.stage_name when 'Closed Won' then oppdetails.count else 0 end)+max(case oppdetails.stage_name when 'Occurred' then oppdetails.count else 0 end)))), 0) as conversionrate,
         (select (
             sum(cast(ramp_up_call_scheduled__c as int)
-            +cast(ramp_up_call_completed__c as int)
-            +cast(account_list_sent_for_partner_approval as int)
-            +cast(partner_approved_account_list as int)
-            +cast(calling_has_begun__c as int)
-            +cast(calling_completed__c as int)
-            +cast(gathering_outstanding_feedback__c as int)
-            +cast(campaign_completed__c as int))
+            + cast(ramp_up_call_completed__c as int)
+            + cast(account_list_sent_for_partner_approval as int)
+            + cast(partner_approved_account_list as int)
+            + cast(calling_has_begun__c as int)
+            + cast(calling_completed__c as int)
+            + cast(gathering_outstanding_feedback__c as int)
+            + cast(campaign_completed__c as int))
         ) from campaigns where partner__c=oppdetails.partner__c) as campaign_score
         from (
             select vw_opportunitydetails.stage_name, campaigns.partner__c, count(vw_opportunitydetails.opportunity_id) as count
@@ -51,7 +51,6 @@ class Scorecard
             left join vw_opportunitydetails on vw_opportunitydetails.campaign_id=campaigns.id
             where (
                 ((vw_opportunitydetails.is_deleted=0) or (vw_opportunitydetails.is_deleted is null))
-                /*and (campaigns.campaign_id='#{campaign_id}')*/
                 and (
                     (campaigns.partner__c='#{partner__c}') or (campaigns.stakeholder__c='#{partner__c}')
                 )
