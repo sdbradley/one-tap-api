@@ -73,6 +73,11 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  require 'syslogger'
+  config.logger = Syslogger.new("one-tap-api",Syslog::LOG_PID, Syslog::LOG_LOCAL7)
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Json.new
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
