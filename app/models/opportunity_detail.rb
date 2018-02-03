@@ -32,6 +32,9 @@ class OpportunityDetail < ApplicationRecord
       opportunity_type: opportunity_type,
       next_step: next_step,
       meeting_date_time__c: meeting_date_time__c,
+      is_won: is_won,
+      registered_deal_num__c: registered_deal_num__c,
+      recording_downloaded_date: recording_downloaded_date,
       created_at: created_at
     }
   end
