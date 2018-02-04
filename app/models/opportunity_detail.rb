@@ -22,6 +22,7 @@ class OpportunityDetail < ApplicationRecord
       account_id: account_id,
       campaign_id: campaign_id,
       opportunity_id: opportunity_id,
+      partner__c: partner__c,
       name: name,
       description: description,
       partner: partner,
