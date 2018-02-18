@@ -5,7 +5,7 @@ default: &default
   password: <%= ENV['DB_PASSWORD'] %>
   host: <%= ENV['DB_HOST'] %>
   port: <%= ENV['DB_PORT'] || 3306 %>
-  pool: 5
+  pool: 15
 
 development:
   <<: *default

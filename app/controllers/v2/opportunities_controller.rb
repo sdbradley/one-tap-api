@@ -6,6 +6,13 @@ class V2::OpportunitiesController < ApplicationController
         }
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end
+    def show
+        opportunities = OpportunityDetail.joins(:notes).joins(:opportunity_contact_roles).joins(:attachments).where(opportunity_id: params[:id]).distinct
+        response_body = {
+            opportunities: opportunities.map(&:to_h)
+        }
+        standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
+    end
 
   private
   

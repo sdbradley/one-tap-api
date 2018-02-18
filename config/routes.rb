@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       post "authentication", to: "authentication#create"
       resources :accounts, only: [:index, :show]
       resources :attachments, only: [:index]
-      resources :opportunities, only: [:index]
+      resources :opportunities, only: [:index, :show]
       resources :campaigns, only: [:index]
       resources :contacts, only: [:index]
       resources :scorecard, only: [:index]
