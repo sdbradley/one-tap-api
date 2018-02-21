@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :scorecard, only: [:index]
       get "/news_items", to: "campaigns#index_news"
       get "/statistics", to: "campaigns#statistics"
+      get "/attachments/:attachment_id/download", to: "attachments#index_download"
       resources :users do
         collection do
           get "current", to: "current"

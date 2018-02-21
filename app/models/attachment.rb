@@ -1,5 +1,5 @@
 class Attachment < ApplicationRecord
-    belongs_to :opportunity, foreign_key: "opportunity_id", primary_key: "parent_id"
+    belongs_to :opportunity, foreign_key: "parent_id", primary_key: "opportunity_id"
     has_many :attachment_downloads
     
     def to_h
