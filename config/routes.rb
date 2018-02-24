@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get "/news_items", to: "campaigns#index_news"
       get "/statistics", to: "campaigns#statistics"
       get "/attachments/:attachment_id/download", to: "attachments#index_download"
+      post "opportunities/:opportunity_id/feedback", to: "opportunities#create_feedback"
       resources :users do
         collection do
           get "current", to: "current"
