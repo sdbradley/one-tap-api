@@ -4,6 +4,7 @@ class OpportunityDetail < ApplicationRecord
   has_many :notes, primary_key: "opportunity_id", foreign_key: "parent_id"
   has_many :opportunity_contact_roles, primary_key: "opportunity_id", foreign_key: "opportunity_id"
   has_many :attachments, primary_key: "opportunity_id", foreign_key: "parent_id"
+  has_many :opportunity_feedbacks, primary_key: "opportunity_id", foreign_key: "opportunity_id"
 
   scope :with_partner_of, -> (partner_id) { where("partner__c = ?", partner_id) }
   scope :by_start_date, -> (date) { where("meeting_date_time__c >= ?", date.to_i) }
@@ -57,6 +58,7 @@ class OpportunityDetail < ApplicationRecord
       notes: notes.map(&:to_h),
       contacts: opportunity_contact_roles.map(&:to_h),
       attachments: attachments.map(&:to_h),
+      feedback: opportunity_feedbacks.map(&:to_h),
       created_at: created_at
     }
   end
