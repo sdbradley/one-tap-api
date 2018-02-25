@@ -1,6 +1,6 @@
 class V2::OpportunitiesController < AuthorizedController
     def index
-        opportunities = OpportunityDetail.get(permitted_params)
+        opportunities = OpportunityDetail.get(permitted_params).joins(:opportunity_feedbacks).order("vw_opportunitydetails.meeting_date_time__c desc")
         response_body = {
             opportunities: opportunities.map(&:to_h)
         }
@@ -8,7 +8,7 @@ class V2::OpportunitiesController < AuthorizedController
     end
 
     def show
-        opportunities = OpportunityDetail.joins(:notes).joins(:opportunity_contact_roles).joins(:attachments).where(opportunity_id: params[:id]).distinct
+        opportunities = OpportunityDetail.joins(:notes).joins(:opportunity_contact_roles).joins(:attachments).joins(:opportunity_feedbacks).where(opportunity_id: params[:id]).distinct
         response_body = {
             opportunities: opportunities.map(&:to_h)
         }
