@@ -25,6 +25,7 @@ class User < ApplicationRecord
   validates_format_of :password, with: /[a-z]/, message: "must include a lowercase letter", if: :password_digest_changed?
 
   has_many :roles, through: :user_roles
+  belongs_to :account, foreign_key: "account_id"
 
   before_create(:generate_reset_token)
 
@@ -36,7 +37,7 @@ class User < ApplicationRecord
       email_address: email_address,
       user_name: user_name,
       phone: phone,
-      account_id: account_id,
+      account: account,
       receive_texts: receive_texts,
       is_approved: is_approved,
       is_deleted: is_deleted

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
           get "current", to: "current"
         end
       end
+      get "/admin/users", to: "admin#index_users"
     end
   end
 end
