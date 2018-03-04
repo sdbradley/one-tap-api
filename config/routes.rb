@@ -17,6 +17,10 @@ Rails.application.routes.draw do
           get "current", to: "current"
         end
       end
+      get "/admin/users", to: "admin#index_users"
+      put "/admin/users/:id", to: "admin#update_user"
+      post "/admin/users", to: "admin#create_user"
+      delete "/admin/users/:id", to: "admin#destroy_user"
     end
   end
 end
