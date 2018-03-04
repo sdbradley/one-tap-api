@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_secure_password
   
   validates_presence_of :first_name, :last_name, :email_address
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email_address
   validates_length_of :password, minimum: 6, if: :password_digest_changed?
   validates_format_of :password, with: /[A-Z]/, message: "must include a capital letter", if: :password_digest_changed?
   validates_format_of :password, with: /[a-z]/, message: "must include a lowercase letter", if: :password_digest_changed?
@@ -37,6 +37,7 @@ class User < ApplicationRecord
       email_address: email_address,
       user_name: user_name,
       phone: phone,
+      account_id: account && account.id,
       account: account,
       receive_texts: receive_texts,
       is_approved: is_approved,
@@ -74,4 +75,30 @@ class User < ApplicationRecord
   def is_admin?
     roles.include?(Role.find_by(name: Role::ADMIN))
   end
+
+  def self.create_user(params)
+    params = params.merge({password: SecureRandom.base64, is_approved: 1, is_deleted: 0})
+    user = User.create!(params)
+    ServiceResponse.new(status: :success, status_code: 200, body: {user: user.to_h})
+  end
+
+  def self.update_user(id, params)
+    user = User.find(id)
+    params = params.presence || {}
+    if user.update(params)
+      ServiceResponse.new(status: :success, status_code: 200, body: {user: user.to_h})
+    elsif user.errors
+      ServiceResponse.new(status: :error, status_code: 422, body: {errors: user.errors})
+    end
+  rescue ActiveRecord::RecordNotFound
+    ServiceResponse.new(status: :error, status_code: 404)
+  end
+
+  def self.delete_user(id)
+    User.find(id).destroy
+    ServiceResponse.new(status: :success, status_code: 204)
+  rescue ActiveRecord::RecordNotFound
+    ServiceResponse.new(status: :error, status_code: 404)
+  end
+
 end

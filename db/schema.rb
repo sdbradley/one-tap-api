@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221041554) do
+ActiveRecord::Schema.define(version: 20180304011917) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "account_id"
@@ -462,6 +462,7 @@ ActiveRecord::Schema.define(version: 20171221041554) do
     t.boolean  "is_deleted"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "reset_token"
   end
 
 end
