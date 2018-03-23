@@ -1,10 +1,11 @@
 branch-defaults:
   master:
-    environment: one-tap-api
+    environment: null
+    group_suffix: null
 global:
   application_name: one-tap-api
-  default_ec2_keyname: one-tap-ec2-key
-  default_platform: Ruby 2.4 (Puma)
+  default_ec2_keyname: cig-otp-key
+  default_platform: Ruby 2.5 (Puma)
   default_region: us-east-1
   profile: eb-cli
   sc: git
