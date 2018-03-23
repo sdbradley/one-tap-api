@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: null
+    environment: onetapapi
     group_suffix: null
 global:
   application_name: one-tap-api
