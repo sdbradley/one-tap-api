@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       put "/admin/users/:id", to: "admin#update_user"
       post "/admin/users", to: "admin#create_user"
       delete "/admin/users/:id", to: "admin#destroy_user"
+      get "/admin/notifications", to: "notifications#index"
+      put "/admin/notifications/:id", to: "notifications#update"
     end
   end
 end
