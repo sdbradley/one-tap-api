@@ -4,10 +4,10 @@ class V2::AccountsController < ApplicationController
           if only_otp_clients?
             Account.where(is_otp_client: true).order(:name)
           else
-            Account.where(account_type: 'Prospect').order(:name)
+            Account.where(Type: 'Prospect').order(:name).limit(100)
           end
         response_body = {
-            accounts: accounts
+            accounts: accounts.map(&:to_h)
         }
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end
