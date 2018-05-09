@@ -1,6 +1,14 @@
 class OpportunityContactRole < ApplicationRecord
 
-    belongs_to :contact
+    self.table_name = "OpportunityContactRole"
+
+    belongs_to :contact, foreign_key: "ContactId"
+
+    alias_attribute :contact_id, :ContactId
+    alias_attribute :opportunity_id, :OpportunityId
+    alias_attribute :role, :Role
+    alias_attribute :is_primary, :IsPrimary
+    alias_attribute :is_deleted, :IsDeleted
 
     scope :primary, -> (opportunity_id) { joins(:contact).where(opportunity_id: opportunity_id, is_primary: true) }
   
@@ -17,7 +25,12 @@ class OpportunityContactRole < ApplicationRecord
           name: contact.name,
           title: contact.title,
           email: contact.email,
-          mobile_phone: contact.mobile_phone
+          phone: contact.phone,
+          mobile_phone: contact.mobile_phone,
+          department: contact.department,
+          receives_email_notifications__c: contact.receives_email_notifications__c,
+          is_primary_email_recipient__c: contact.is_primary_email_recipient__c,
+          is_deleted: is_deleted
         }
     end
 
