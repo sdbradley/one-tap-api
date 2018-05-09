@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :campaigns, only: [:index]
       resources :contacts, only: [:index]
       resources :scorecard, only: [:index]
-      get "/campaigns/:campaign_id/notes", to: "campaigns#notes"
+      get "/notes", to: "campaigns#notes"
       get "/statistics", to: "campaigns#statistics"
       get "/attachments/:attachment_id/download", to: "attachments#index_download"
       post "opportunities/:opportunity_id/feedback", to: "opportunities#create_feedback"

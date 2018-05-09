@@ -15,7 +15,7 @@ class V2::CampaignsController < ApplicationController
     #    standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     #end
     def notes
-        notes = Note.where(parent_id: params[:campaign_id])
+        notes = Note.get(permitted_params)
         response_body = {
             notes: notes.map(&:to_h)
         }
@@ -25,7 +25,7 @@ class V2::CampaignsController < ApplicationController
     def statistics
         statistics = Campaign.get_statistics(permitted_params)
         response_body = {
-            statistics: statistics
+            statistics: statistics.map(&:to_stats_h)
         }
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end

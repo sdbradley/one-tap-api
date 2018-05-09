@@ -3,7 +3,7 @@ class Opportunity < ApplicationRecord
   self.table_name = "Opportunity"
   self.primary_key = "Id"
 
-  belongs_to :campaign
+  belongs_to :campaign, foreign_key: "CampaignId"
   has_many :notes, foreign_key: "ParentId"
   has_many :opportunity_feedbacks
   has_many :attachments, foreign_key: "ParentId"
@@ -20,13 +20,16 @@ class Opportunity < ApplicationRecord
   alias_attribute :close_date, :CloseDate
   alias_attribute :type, :Type
   alias_attribute :next_step, :NextStep
+  alias_attribute :partner__c, :Partner__c
   alias_attribute :meeting_date_time__c, :Meeting_Date_Time__c
+  alias_attribute :is_otp_approved__c, :IsOTP_Approved__c
+  alias_attribute :registered_deal_num__c, :Registered_Deal_Num__c
   alias_attribute :created_at, :CreatedDate
 
-  scope :with_partner_of, -> (partner_id) { joins(:campaigns).where({campaigns.partner__c => partner_id}) }
+  scope :with_partner_of, -> (partner_id) { joins(:campaign).where("opportunity.partner__c = ?", partner_id) }
   scope :by_start_date, -> (date) { where("meeting_date_time__c >= ?", date.to_i) }
   scope :by_end_date, -> (date) { where("meeting_date_time__c < ?", date.to_i) }
-  scope :by_stage, -> (stage_name) { where("stage_name=?", stage_name) }
+  scope :by_stage, -> (stage_name) { where("StageName=?", stage_name) }
 
   scope :search, -> (fields) {
     query = self
@@ -50,7 +53,10 @@ class Opportunity < ApplicationRecord
       close_date: close_date,
       type: type,
       next_step: next_step,
+      partner__c: partner__c,
       meeting_date_time__c: meeting_date_time__c,
+      is_otp_approved__c: is_otp_approved__c,
+      registered_deal_num__c: registered_deal_num__c,
       created_at: created_at
     }
   end
@@ -68,6 +74,7 @@ class Opportunity < ApplicationRecord
       close_date: close_date,
       type: type,
       next_step: next_step,
+      partner__c: partner__c,
       meeting_date_time__c: meeting_date_time__c,
       created_at: created_at,
       notes: notes.map(&:to_h),

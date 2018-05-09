@@ -27,6 +27,7 @@ class Account < ApplicationRecord
     alias_attribute :shipping_postal_code, :ShippingPostalCode
     alias_attribute :shipping_country, :ShippingCountry
     alias_attribute :master_record_id, :MasterRecordId
+    alias_attribute :is_otp_client_c, :IsOTPClient__c
     alias_attribute :is_deleted, :IsDeleted
 
     def to_h

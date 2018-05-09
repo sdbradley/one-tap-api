@@ -2,7 +2,7 @@ class V2::AccountsController < ApplicationController
     def index
         accounts = 
           if only_otp_clients?
-            Account.where(is_otp_client: true).order(:name)
+            Account.where(is_otp_client_c: true).order(:name)
           else
             Account.where(Type: 'Prospect').order(:name).limit(100)
           end
@@ -12,7 +12,7 @@ class V2::AccountsController < ApplicationController
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end
     def show
-        accounts = Account.where(account_id: params[:id])
+        accounts = Account.where(id: params[:id])
         response_body = {
             accounts: accounts
         }
