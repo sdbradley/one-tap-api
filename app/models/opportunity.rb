@@ -26,7 +26,7 @@ class Opportunity < ApplicationRecord
   alias_attribute :registered_deal_num__c, :Registered_Deal_Num__c
   alias_attribute :created_at, :CreatedDate
 
-  scope :with_partner_of, -> (partner_id) { joins(:campaign).where("opportunity.partner__c = ?", partner_id) }
+  scope :with_partner_of, -> (partner_id) { joins(:campaign).where("Opportunity.partner__c = ?", partner_id) }
   scope :by_start_date, -> (date) { where("meeting_date_time__c >= ?", date.to_i) }
   scope :by_end_date, -> (date) { where("meeting_date_time__c < ?", date.to_i) }
   scope :by_stage, -> (stage_name) { where("StageName=?", stage_name) }

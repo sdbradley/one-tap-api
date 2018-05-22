@@ -50,20 +50,20 @@ class Campaign < ApplicationRecord
   alias_attribute :is_deleted, :IsDeleted
 
   scope :with_stakeholder_of, -> (stakeholder_id) { where({stakeholder__c: stakeholder_id}) }
-  scope :with_partner_of, -> (partner_id) { where("campaign.partner__c=?", partner_id) }
+  scope :with_partner_of, -> (partner_id) { where("Partner__c=?", partner_id) }
   scope :with_type_of, -> (type) { where({campaign_type: type}) }
   scope :with_status_of, -> (status) { where({status: status}) }
   scope :by_start_date, -> (date) { where("StartDate >= ?", date.to_i) }
   scope :by_end_date, -> (date) { where("EndDate < ?", date.to_i) }
 
   scope :with_statistics_sum, -> {
-    select('SUM(campaign.NumberSent) as NumberSent, 
-    SUM(campaign.NumberOfLeads) as NumberOfLeads, 
-    SUM(campaign.NumberOfConvertedLeads) as NumberOfConvertedLeads, 
-    SUM(campaign.NumberOfContacts) as NumberOfContacts, 
-    SUM(campaign.NumberOfResponses) as NumberOfResponses, 
-    SUM(campaign.NumberOfWonOpportunities) as NumberOfWonOpportunities').
-    select('(select COUNT(id) from opportunity where opportunity.CampaignId=campaign.Id and opportunity.IsOTP_Approved__c=1) as NumberOfOpportunities')
+    select('SUM(Campaign.NumberSent) as NumberSent, 
+    SUM(Campaign.NumberOfLeads) as NumberOfLeads, 
+    SUM(Campaign.NumberOfConvertedLeads) as NumberOfConvertedLeads, 
+    SUM(Campaign.NumberOfContacts) as NumberOfContacts, 
+    SUM(Campaign.NumberOfResponses) as NumberOfResponses, 
+    SUM(Campaign.NumberOfWonOpportunities) as NumberOfWonOpportunities').
+    select('(select COUNT(id) from Opportunity where Opportunity.CampaignId=Campaign.Id and Opportunity.IsOTP_Approved__c=1) as NumberOfOpportunities')
   }
   scope :statistics, -> (fields) {
     query = self
