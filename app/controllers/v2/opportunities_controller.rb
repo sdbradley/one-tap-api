@@ -7,7 +7,7 @@ class V2::OpportunitiesController < ApplicationController
     #    standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     #end
     def index
-        opportunities = Opportunity.get(permitted_params).order(meeting_date_time__c: :desc)#.limit(100)
+        opportunities = Opportunity.get(permitted_params).order(meeting_date_time__c: :desc).limit(100)
         response_body = {
             opportunities: opportunities.map(&:to_h)
         }

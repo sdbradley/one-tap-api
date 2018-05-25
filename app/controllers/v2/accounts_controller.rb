@@ -14,7 +14,7 @@ class V2::AccountsController < ApplicationController
     def show
         accounts = Account.where(id: params[:id])
         response_body = {
-            accounts: accounts
+            accounts: accounts.map(&:to_h)
         }
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end
