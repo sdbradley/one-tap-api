@@ -24,6 +24,7 @@ class User < ApplicationRecord
   validates_format_of :password, with: /[A-Z]/, message: "must include a capital letter", if: :password_digest_changed?
   validates_format_of :password, with: /[a-z]/, message: "must include a lowercase letter", if: :password_digest_changed?
 
+  has_many :user_roles
   has_many :roles, through: :user_roles
   belongs_to :account, foreign_key: "account_id"
 
@@ -39,6 +40,7 @@ class User < ApplicationRecord
       phone: phone,
       account_id: account && account.id,
       account: account,
+      roles: roles.map(&:to_h),
       receive_texts: receive_texts,
       is_approved: is_approved,
       is_deleted: is_deleted
