@@ -5,6 +5,7 @@ class Account < ApplicationRecord
 
     has_many :contacts
     has_many :opportunities
+    has_many :campaigns, foreign_key: "Partner__c"
 
     alias_attribute :parent_id, :ParentId
     alias_attribute :name, :Name
