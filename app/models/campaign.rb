@@ -5,6 +5,7 @@ class Campaign < ApplicationRecord
 
   has_many :opportunities, foreign_key: "CampaignId"
   has_many :notes, foreign_key: "ParentId"
+  belongs_to :account, foreign_key: "Partner__c"
 
   alias_attribute :parent_id, :ParentId
   alias_attribute :name, :Name
