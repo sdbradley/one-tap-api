@@ -50,6 +50,7 @@ class Campaign < ApplicationRecord
   alias_attribute :created_at, :CreatedDate
   alias_attribute :is_deleted, :IsDeleted
 
+  scope :with_id_of, -> (id) { where({id: id}) }
   scope :with_stakeholder_of, -> (stakeholder_id) { where({stakeholder__c: stakeholder_id}) }
   scope :with_partner_of, -> (partner_id) { where("Partner__c=?", partner_id) }
   scope :with_type_of, -> (type) { where({campaign_type: type}) }
@@ -69,6 +70,7 @@ class Campaign < ApplicationRecord
   scope :statistics, -> (fields) {
     query = self
     query = query.with_statistics_sum
+    query = query.with_id_of(fields[:id]) if fields[:id].present?
     query = query.with_partner_of(fields[:partner__c]) if fields[:partner__c].present?
     query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
     query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
@@ -81,8 +83,8 @@ class Campaign < ApplicationRecord
     query = query.with_partner_of(fields[:partner__c]) if fields[:partner__c].present?
     query = query.with_type_of(fields[:campaign_type]) if fields[:campaign_type].present?
     query = query.with_status_of(fields[:status]) if fields[:status].present?
-    query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
-    query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
+    #query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
+    #query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
   }
 
   def self.get(params)

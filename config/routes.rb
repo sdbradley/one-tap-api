@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :accounts, only: [:index, :show]
       resources :attachments, only: [:index]
       resources :opportunities, only: [:index, :show]
-      resources :campaigns, only: [:index]
+      resources :campaigns, only: [:index, :show]
       resources :contacts, only: [:index]
       resources :scorecard, only: [:index]
       get "/notes", to: "campaigns#notes"

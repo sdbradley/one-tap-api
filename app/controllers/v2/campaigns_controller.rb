@@ -1,19 +1,24 @@
 class V2::CampaignsController < ApplicationController
     def index
-        campaigns = Campaign.get(permitted_params)
+        campaigns = Campaign.search(permitted_params).order(start_date: :desc)
         response_body = {
             campaigns: campaigns.map(&:to_h)
         }
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end
 
-    #def index_news
-    #    campaign_news = CampaignNewsItem.get(permitted_params)
-    #    response_body = {
-    #        campaign_news: campaign_news
-    #    }
-    #    standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
-    #end
+    def show
+        campaigns = Campaign.where(id: params[:id])
+        notes = Note.get(permitted_params).limit(10)
+        opportunities = Opportunity.with_campaign_of(params[:id]).order(meeting_date_time__c: :desc).limit(100)
+        response_body = {
+            campaigns: campaigns.map(&:to_h),
+            notes: notes.map(&:to_h),
+            opportunities: opportunities.map(&:to_h)
+        }
+        standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
+    end
+
     def notes
         notes = Note.get(permitted_params)
         response_body = {
@@ -33,7 +38,14 @@ class V2::CampaignsController < ApplicationController
   private
   
   def permitted_params
-    params.permit(:campaign_type, :status, :start_date, :end_date, :stakeholder__c, :partner__c)
+    params.permit(
+        :campaign_type, 
+        :status, 
+        :start_date, 
+        :end_date, 
+        :stakeholder__c, 
+        :partner__c
+    )
   end
 
 end

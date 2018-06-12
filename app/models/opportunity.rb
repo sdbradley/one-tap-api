@@ -38,6 +38,7 @@ class Opportunity < ApplicationRecord
   alias_attribute :intelligence_question_012, :IQ012__c
   alias_attribute :created_at, :CreatedDate
 
+  scope :with_campaign_of, -> (campaign_id) { where(campaign_id: campaign_id) }
   scope :with_partner_of, -> (partner_id) { joins(:campaign).where("Opportunity.partner__c = ?", partner_id) }
   scope :by_start_date, -> (date) { where("meeting_date_time__c >= ?", Time.at(date.to_i).to_datetime) }
   scope :by_end_date, -> (date) { where("meeting_date_time__c < ?", Time.at(date.to_i).to_datetime) }
