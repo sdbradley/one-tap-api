@@ -35,6 +35,11 @@ class V2::CampaignsController < ApplicationController
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end
 
+    def index_opportunities_export
+      opportunities = Opportunity.with_campaign_of(params[:id]).order(meeting_date_time__c: :desc)
+      export_opportunities(opportunities)
+    end
+
   private
   
   def permitted_params
@@ -45,6 +50,14 @@ class V2::CampaignsController < ApplicationController
         :end_date, 
         :stakeholder__c, 
         :partner__c
+    )
+  end
+
+  def export_opportunities(opportunities)
+    send_data(
+      Opportunity.to_csv(opportunities),
+      filename: "opportunities_for_campaign_#{params[:id]}_#{Date.today}",
+      type: "text/csv"
     )
   end
 

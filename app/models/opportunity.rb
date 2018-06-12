@@ -1,5 +1,7 @@
 class Opportunity < ApplicationRecord
 
+  require "csv"
+
   self.table_name = "Opportunity"
   self.primary_key = "Id"
 
@@ -107,6 +109,17 @@ class Opportunity < ApplicationRecord
       feedback: opportunity_feedbacks.map(&:to_h),
       attachments: attachments.map(&:to_h)
     }
+  end
+
+  def self.to_csv(data)
+    return nil unless data.present?
+    attributes = %w(Name Partner__c StageName Meeting_Date_Time__c)
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      data.each do |o|
+        csv << attributes.map { |attr| o[attr] }
+      end
+    end
   end
 
   def self.get(params)

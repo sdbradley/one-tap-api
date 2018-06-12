@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get "/attachments/:attachment_id/download", to: "attachments#index_download"
       post "opportunities/:opportunity_id/feedback", to: "opportunities#create_feedback"
       get "opportunities/:opportunity_id/contact_roles", to: "opportunities#contact_roles"
+      get "campaigns/:id/opportunities/export", to: "campaigns#index_opportunities_export"
       resources :users do
         collection do
           get "current", to: "current"
