@@ -10,6 +10,7 @@ class Attachment < ApplicationRecord
   alias_attribute :owner_id, :OwnerId
   alias_attribute :name, :Name
   alias_attribute :content_type, :ContentType
+  alias_attribute :body, :Body
   alias_attribute :body_length, :BodyLength
   alias_attribute :description, :Description
 
@@ -21,7 +22,9 @@ class Attachment < ApplicationRecord
     name: name,
     content_type: content_type,
     body_length: body_length,
-    description: description
+    description: description,
+    body: body,
+    downloads: self.attachment_downloads
     #recording_downloaded_date: recording_downloaded_date,
     #recording_downloaded_by: recording_downloaded_by
   }
