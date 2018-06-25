@@ -20,6 +20,7 @@ class User < ApplicationRecord
   
   validates_presence_of :first_name, :last_name, :email_address
   validates_uniqueness_of :email_address
+  validates_presence_of :password, on: :set_password
   validates_length_of :password, minimum: 6, if: :password_digest_changed?
   validates_format_of :password, with: /[A-Z]/, message: "must include a capital letter", if: :password_digest_changed?
   validates_format_of :password, with: /[a-z]/, message: "must include a lowercase letter", if: :password_digest_changed?
