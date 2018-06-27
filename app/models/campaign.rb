@@ -75,16 +75,18 @@ class Campaign < ApplicationRecord
     query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
     query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
     #query.group('Partner__c')
+    query
   }
 
   scope :search, -> (fields) {
     query = self
-    query = query.with_stakeholder_of(fields[:stakeholder__c]) if fields[:stakeholder__c].present?
-    query = query.with_partner_of(fields[:partner__c]) if fields[:partner__c].present?
+    query = query.with_stakeholder_of(fields[:account_id]) if fields[:account_id].present? && fields[:role].present? && fields[:role]=='Stakeholder'
+    query = query.with_partner_of(fields[:account_id]) if fields[:account_id].present? && fields[:role].present? && fields[:role]=='Partner'
     query = query.with_type_of(fields[:campaign_type]) if fields[:campaign_type].present?
     query = query.with_status_of(fields[:status]) if fields[:status].present?
     #query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
     #query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
+    query
   }
 
   def self.get(params)
