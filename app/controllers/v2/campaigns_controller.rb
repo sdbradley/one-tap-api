@@ -49,7 +49,9 @@ class V2::CampaignsController < ApplicationController
         :start_date, 
         :end_date, 
         :stakeholder__c, 
-        :partner__c
+        :partner__c,
+        :account_id,
+        :role
     )
   end
 
