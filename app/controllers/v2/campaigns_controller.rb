@@ -28,7 +28,7 @@ class V2::CampaignsController < ApplicationController
     end
 
     def statistics
-        statistics = Campaign.get_statistics(permitted_params)
+        statistics = Campaign.statistics(permitted_params)
         response_body = {
             statistics: statistics.map(&:to_stats_h)
         }

@@ -55,6 +55,7 @@ class Account < ApplicationRecord
         shipping_postal_code: shipping_postal_code,
         shipping_country: shipping_country,
         master_record_id: master_record_id,
+        contacts: contacts.uniq.map(&:to_h),
         is_deleted: is_deleted
     }
     end
