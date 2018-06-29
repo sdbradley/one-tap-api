@@ -71,7 +71,8 @@ class Campaign < ApplicationRecord
     query = self
     query = query.with_statistics_sum
     query = query.with_id_of(fields[:id]) if fields[:id].present?
-    query = query.with_partner_of(fields[:partner__c]) if fields[:partner__c].present?
+    query = query.with_stakeholder_of(fields[:account_id]) if fields[:account_id].present? && fields[:role].present? && fields[:role]=='Stakeholder'
+    query = query.with_partner_of(fields[:account_id]) if fields[:account_id].present? && fields[:role].present? && fields[:role]=='Partner'
     query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
     query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
     #query.group('Partner__c')
@@ -88,14 +89,6 @@ class Campaign < ApplicationRecord
     #query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
     query
   }
-
-  def self.get(params)
-    Campaign.search(params)
-  end
-
-  def self.get_statistics(params)
-    Campaign.statistics(params)
-  end
 
   def to_h
   {
