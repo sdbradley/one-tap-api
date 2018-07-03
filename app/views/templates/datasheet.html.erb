@@ -1,0 +1,241 @@
+<%
+    address = ""
+    address.concat(@account.BillingStreet) if @account.BillingStreet.present?
+    address.concat(", ") if @account.BillingStreet.present? && @account.BillingCity.present?
+    address.concat(@account.BillingCity) if @account.BillingCity.present?
+    address.concat(", ") if @account.BillingCity.present? && @account.BillingState.present?
+    address.concat(@account.BillingState) if @account.BillingState.present?
+    address.concat(" ") if @account.BillingPostalCode.present?
+    address.concat(@account.BillingPostalCode) if @account.BillingPostalCode.present?
+
+    revenue = ""
+    revenue = number_to_currency(@account.annual_revenue, precision: 0) if @account.annual_revenue.present?
+
+    notes = ""
+    notes = @opportunity.notes[0].body.html_safe if @opportunity.notes.any?
+
+    contacts = []
+    contacts = @account.contacts.uniq if @account.contacts.any?
+%>
+<style type="text/css">@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800);</style>
+<style>
+html {
+    font-size: 62.5%;
+    font-family: "Open Sans", sans-serif;
+}
+body {
+    font-size: 2.4rem;
+    color: #595959;
+    margin: 0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.Widget {
+    display: block;
+    position: relative;
+    margin-bottom: 30px;
+    padding: 15px 20px;
+    background: #fff;
+    border-radius: 0.2rem;
+}
+.Widget-widgetBody {
+    margin-top: 15px;
+}
+.Widget-full {
+    display: block;
+    width: 100%;
+}
+.Widget-half {
+    display: inline-grid;
+    width: 50%;
+}
+.Widget-title {
+    margin-top: 0;
+    color: #444;
+    font-weight: bold;
+}
+.Table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0 4rem;
+    border-bottom: 1rem solid #FFFFFF;
+    font-size: 1.6rem;
+}
+.Table-row--header {
+    background: #F2F2F2;
+    font-size: 1.6rem;
+    text-align: left;
+}
+.Table-row {
+    background: #FFFFFF;
+    border-bottom: 1px solid #F2F2F2;
+}
+.Table-cell--header {
+    border: 2px solid #FAFAFA;
+}
+.Table-cell {
+    position: relative;
+    padding: 1rem;
+}
+.IntelligenceQuestions-container {
+    margin-bottom: 3rem;
+}
+.IntelligenceQuestions-title {
+    font-weight: bold;
+}
+.IntelligenceQuestions-answer {
+    margin-top: 1rem;
+}
+.PartnerOpportunityTable-table {
+    font-size: 2.4rem;
+}
+.Contacts-container {
+    margin-bottom: 3rem;
+}
+.Contacts-name {
+    font-weight: bold;
+}
+</style>
+<div class="App-body">
+    <div class="App-header">
+        <div class="App-headerContent">
+            <div class="Header">
+                <div class="Header-content">
+                    <div class="Header-logo">
+                        <img class="Header-logo--image" src="https://s3.amazonaws.com/test.1tap.ontappipeline.com/cdn/images/otp-logo.png"></div>
+                    </div>
+                    <div class="Header-center"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="Widget-full">
+                <section class="Widget">
+                    <h2 class="Widget-title">Opportunity Datasheet</h2>
+                    <div class="Widget-widgetControls"></div>
+                    <div class="Widget-widgetBody Widget-widget-body">
+                        <div>
+                            <h1 class="Dashboard-account--title"><%= @opportunity.name %></h1>
+                        </div>
+                        <div>
+                            Initial Discovery Call scheduled for: <%= @opportunity.meeting_date_time__c.strftime("%m/%d/%Y %I:%M %p %Z") %>
+                        </div>
+                    </div>
+                </section>
+                <section class="Widget">
+                    <h3 class="Widget-title">Company Information</h3>
+                    <div class="Widget-widgetControls"></div>
+                    <div class="Widget-widgetBody Widget-widget-body">
+                        <div>
+                            <div>Address: <%= address %></div>
+                            <div>Industry: <%= @account.industry %></div>
+                            <div>Revenue: <%= revenue %></div>
+                            <div>Website: <%= @account.website %></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="Widget">
+                    <h3 class="Widget-title">Company Description</h3>
+                    <div class="Widget-widgetControls"></div>
+                    <div class="Widget-widgetBody Widget-widget-body">
+                        <div>
+                            <%= @account.description %>
+                        </div>
+                    </div>
+                </section>
+                <section class="Widget">
+                    <h3 class="Widget-title">Contacts</h3>
+                    <div class="Widget-widgetControls"></div>
+                    <div class="Widget-widgetBody Widget-widget-body">
+                        <div>
+                            <%
+                            contacts.each do |c|
+                            %>
+                            <div class="Contacts-container">
+                                <div class="Contacts-name"><%= c.name %>, <%= c.title %></div>
+                                <div><%= c.email %></div>
+                                <div><%= c.phone %></div>
+                            </div>
+                            <%
+                            end
+                            %>
+                        </div>
+                    </div>
+                </section>
+                <section class="Widget">
+                    <h3 class="Widget-title">Intelligence Questions</h3>
+                    <div class="Widget-widgetControls"></div>
+                    <div class="Widget-widgetBody Widget-widget-body">
+                        <div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">How many terabytes do they currently manage?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_001 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">Current storage vendor?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_002 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">Current storage solution (SAN, NAS, Direct Attached)?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_003 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">Virtualization platform (VMware, Hyper-V or Citrix)?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_004 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">Do you have any prior experience working with Dell EMC Flash Storage? If so, what?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_005 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">Anticipated data growth (terabytes) next year?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_006 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">Disaster Recovery: current and future plans?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_007 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">How are they currently backing up their information?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_008 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">Prospect's title and decision-making capabilities?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_009 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">When will funding be available? Budgetary Cycle?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_010 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">Main initiatives for the project?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_011 %></div>
+                            </div>
+                            <div class="Widget-full IntelligenceQuestions-container">
+                                <div class="IntelligenceQuestions-title">Any other IT initatives within the next 6-12 months?</div>
+                                <div class="IntelligenceQuestions-answer"><%= @opportunity.intelligence_question_012 %></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="Widget">
+                    <h3 class="Widget-title">Call Notes/Additional Comments</h3>
+                    <div class="Widget-widgetControls"></div>
+                    <div class="Widget-widgetBody Widget-widget-body">
+                        <div class="CallNotes-body">
+                            <div><%= notes %></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="Widget">
+                    <h3 class="Widget-title">Action Items</h3>
+                    <div class="Widget-widgetControls"></div>
+                    <div class="Widget-widgetBody Widget-widget-body">On Tap Pipeline will send prospect and partner an email confirming the meeting time. 24-48 hours prior to appointment, On Tap Pipeline will re-confirm with prospect via email/phone.</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

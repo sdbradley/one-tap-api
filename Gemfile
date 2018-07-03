@@ -31,6 +31,10 @@ gem 'jwt', '~> 1.5.6'
 
 gem 'dotenv-rails'
 
+gem 'prawn', '~>2.2.2'
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
