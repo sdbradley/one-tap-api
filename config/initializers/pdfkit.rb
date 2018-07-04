@@ -7,6 +7,6 @@ PDFKit.configure do |config|
         dpi: 400,
         footer_center: "Page [page] of [toPage]",
         footer_font_size: 8,
-        footer_spacing: 6
+        footer_spacing: -6
     }
 end
