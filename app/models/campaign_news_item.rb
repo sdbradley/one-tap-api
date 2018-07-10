@@ -3,8 +3,8 @@ class CampaignNewsItem < ApplicationRecord
 
   scope :with_stakeholder_of, -> (stakeholder_id) { joins(:campaign).where(campaigns: {stakeholder__c: stakeholder_id}) }
   scope :with_partner_of, -> (partner_id) { joins(:campaign).where(campaigns: {partner__c: partner_id}) }
-  scope :by_start_date, -> (date) { joins(:campaign).where("campaigns.start_date >= ?", date.to_i) }
-  scope :by_end_date, -> (date) { joins(:campaign).where("campaigns.end_date < ?", date.to_i) }
+  scope :by_start_date, -> (date) { joins(:campaign).where("campaigns.start_date >= ?", date) }
+  scope :by_end_date, -> (date) { joins(:campaign).where("campaigns.end_date < ?", date) }
 
   scope :search, -> (fields) {
     query = self

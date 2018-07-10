@@ -55,8 +55,8 @@ class Campaign < ApplicationRecord
   scope :with_partner_of, -> (partner_id) { where("Partner__c=?", partner_id) }
   scope :with_type_of, -> (type) { where({campaign_type: type}) }
   scope :with_status_of, -> (status) { where({status: status}) }
-  scope :by_start_date, -> (date) { where("StartDate >= ?", date.to_i) }
-  scope :by_end_date, -> (date) { where("EndDate < ?", date.to_i) }
+  scope :by_start_date, -> (date) { where("StartDate >= ?", date) }
+  scope :by_end_date, -> (date) { where("EndDate < ?", date) }
 
   scope :with_statistics_sum, -> {
     select('SUM(Campaign.NumberSent) as NumberSent, 

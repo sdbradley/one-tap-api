@@ -16,8 +16,8 @@ class Note < ApplicationRecord
 
   scope :with_stakeholder_of, -> (stakeholder_id) { joins(:campaign).where(Campaign: {stakeholder__c: stakeholder_id}) }
   scope :with_partner_of, -> (partner_id) { joins(:campaign).where(Campaign: {partner__c: partner_id}) }
-  scope :by_start_date, -> (date) { joins(:campaign).where("Campaign.StartDate >= ?", date.to_i) }
-  scope :by_end_date, -> (date) { joins(:campaign).where("Campaign.EndDate < ?", date.to_i) }
+  scope :by_start_date, -> (date) { joins(:campaign).where("Campaign.StartDate >= ?", date) }
+  scope :by_end_date, -> (date) { joins(:campaign).where("Campaign.EndDate < ?", date) }
 
   scope :search, -> (fields) {
     query = self
