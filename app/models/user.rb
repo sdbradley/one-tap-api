@@ -39,8 +39,6 @@ class User < ApplicationRecord
       email_address: email_address,
       user_name: user_name,
       phone: phone,
-      account_id: account && account.id,
-      account: account,
       roles: roles.map(&:to_h),
       receive_texts: receive_texts,
       is_approved: is_approved,

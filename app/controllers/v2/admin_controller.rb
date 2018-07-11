@@ -3,7 +3,7 @@ class V2::AdminController < ApplicationController
   #before_action :ensure_admin
 
   def index_users
-    users = User.joins(:account).all.limit(100)
+    users = User.all.limit(100)
     response_body = {
       users: users.map(&:to_h)
     }
