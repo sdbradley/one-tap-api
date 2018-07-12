@@ -6,13 +6,22 @@ class User < ApplicationRecord
   scope :first_name_like, -> (first_name) { where("users.first_name like ?", "%#{first_name}%") }
   scope :last_name_like, -> (last_name) { where("users.last_name like ?", "%#{last_name}%") }
   scope :email_like, -> (email) { where("users.email_address like ?", "%#{email}%") }
+  scope :username_like, -> (username) { where("users.user_name like ?", "%#{username}%") }
 
   scope :search, -> (fields) {
-    query = self
-    query = query.with_role_of(fields[:role]) if fields[:role].present?
-    query = query.first_name_like(fields[:first_name]) if fields[:first_name].present?
-    query = query.last_name_like(fields[:last_name]) if fields[:last_name].present?
-    query = query.email_like(fields[:email_address]) if fields[:email_address].present?
+    return [] if fields[:search_term].blank?
+    query = all
+    return query unless fields[:search_term].present?
+    search_terms = fields[:search_term].split(" ")
+    search_terms.each do |t|
+      query = query.merge(
+        first_name_like(t)
+          .or(last_name_like(t))
+          .or(email_like(t))
+          .or(username_like(t))
+      )
+    end
+    query = query.limit(100)
     query
   }
 
@@ -31,7 +40,7 @@ class User < ApplicationRecord
 
   before_create(:generate_reset_token)
 
-  def to_h
+  def to_h(with: [])
     {
       id: id,
       first_name: first_name,
@@ -39,13 +48,14 @@ class User < ApplicationRecord
       email_address: email_address,
       user_name: user_name,
       phone: phone,
-      account_id: account && account.id,
-      account: account,
+      account_id: account_id,
       roles: roles.map(&:to_h),
       receive_texts: receive_texts,
       is_approved: is_approved,
       is_deleted: is_deleted
-    }
+    }.tap do |hash|
+      hash[:account] = account if with.include?(:account)
+    end
   end
 
   def self.get(id)
