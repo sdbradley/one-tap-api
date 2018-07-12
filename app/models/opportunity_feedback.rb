@@ -1,7 +1,7 @@
 class OpportunityFeedback < ApplicationRecord
 
-  belongs_to :opportunity, foreign_key: "Id", primary_key: "opportunity_id"
-  belongs_to :opportunity_detail, foreign_key: "opportunity_id", primary_key: "opportunity_id"
+  belongs_to :opportunity, foreign_key: "opportunity_id"
+  #belongs_to :opportunity_detail, foreign_key: "opportunity_id", primary_key: "opportunity_id"
 
   def to_h
   {
