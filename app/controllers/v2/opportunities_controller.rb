@@ -1,4 +1,4 @@
-class V2::OpportunitiesController < AuthorizedController
+class V2::OpportunitiesController < ApplicationController
 
     def index
         opportunities = Opportunity.get(permitted_params).order(meeting_date_time__c: :desc).limit(100)
