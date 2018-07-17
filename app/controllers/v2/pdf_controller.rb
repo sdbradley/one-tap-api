@@ -1,4 +1,4 @@
-class V2::OpportunitiesController < ApplicationController
+class V2::PdfController < ApplicationController
 
   def print
     @opportunity ||= Opportunity.find_by(id: params[:opportunity_id])
