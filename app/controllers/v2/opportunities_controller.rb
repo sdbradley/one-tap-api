@@ -1,4 +1,4 @@
-class V2::OpportunitiesController < ApplicationController
+class V2::OpportunitiesController < AuthorizedController
 
     def index
         opportunities = Opportunity.get(permitted_params).order(meeting_date_time__c: :desc).limit(100)
@@ -14,23 +14,6 @@ class V2::OpportunitiesController < ApplicationController
             opportunities: opportunities.map(&:to_detail_h)
         }
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
-    end
-
-    def print
-      @opportunity ||= Opportunity.find_by(id: params[:opportunity_id])
-      @account ||= Account.find_by(id: params[:account_id])
-      respond_to do |format|
-        format.pdf do
-          html = render_to_string(
-              file: '/app/views/templates/datasheet.html.erb'
-          )
-          pdf = PDFKit.new(html).to_pdf
-          send_data pdf,
-            filename: "export.pdf",
-            type: 'application/pdf',
-            disposition: 'inline'
-        end
-      end
     end
 
     def contact_roles

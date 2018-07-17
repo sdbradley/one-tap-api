@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       delete "/admin/users/:id", to: "admin#destroy_user"
       get "/admin/notifications", to: "notifications#index"
       put "/admin/notifications/:id", to: "notifications#update"
-      get "/account/:account_id/opportunities/:opportunity_id/print", to: "opportunities#print"
+      get "/account/:account_id/opportunities/:opportunity_id/print", to: "pdf#print"
     end
   end
 end
