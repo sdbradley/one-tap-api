@@ -4,7 +4,7 @@ class Account < ApplicationRecord
     self.primary_key = "Id"
 
     has_many :contacts
-    has_many :opportunities
+    has_many :opportunities, foreign_key: "Partner_Account_Assigned__c"
     has_many :campaigns, foreign_key: "Partner__c"
 
     alias_attribute :parent_id, :ParentId
