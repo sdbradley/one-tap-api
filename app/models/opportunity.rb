@@ -6,6 +6,7 @@ class Opportunity < ApplicationRecord
   self.primary_key = "Id"
 
   belongs_to :campaign, foreign_key: "CampaignId"
+  belongs_to :account, foreign_key: "Partner_Account_Assigned__c"
   has_many :notes, foreign_key: "ParentId"
   has_many :opportunity_feedbacks
   has_many :attachments, foreign_key: "ParentId"
@@ -39,6 +40,7 @@ class Opportunity < ApplicationRecord
   alias_attribute :intelligence_question_011, :IQ011__c
   alias_attribute :intelligence_question_012, :IQ012__c
   alias_attribute :created_at, :CreatedDate
+  alias_attribute :partner_account_assigned__c, :Partner_Account_Assigned__c
 
   scope :with_campaign_of, -> (campaign_id) { where(campaign_id: campaign_id) }
   scope :with_partner_of, -> (partner_id) { joins(:campaign).where("Opportunity.partner__c = ?", partner_id) }
@@ -69,6 +71,8 @@ class Opportunity < ApplicationRecord
       type: type,
       next_step: next_step,
       partner__c: partner__c,
+      partner_account_assigned__c: partner_account_assigned__c,
+      account: account.to_h,
       meeting_date_time__c: meeting_date_time__c,
       is_otp_approved__c: is_otp_approved__c,
       registered_deal_num__c: registered_deal_num__c,
