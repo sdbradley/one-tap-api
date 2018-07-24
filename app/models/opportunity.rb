@@ -50,6 +50,7 @@ class Opportunity < ApplicationRecord
 
   scope :search, -> (fields) {
     query = self
+    query = query.with_campaign_of(fields[:campaign_id]) if fields[:campaign_id].present?
     query = query.with_partner_of(fields[:partner__c]) if fields[:partner__c].present?
     query = query.by_stage(fields[:stage_name]) if fields[:stage_name].present?
     query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
