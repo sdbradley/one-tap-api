@@ -57,6 +57,9 @@ body {
     color: #444;
     font-weight: bold;
 }
+.Widget-controls {
+    text-align: right;
+}
 .Table {
     width: 100%;
     border-collapse: collapse;
@@ -118,7 +121,7 @@ body {
             <div class="Widget-full">
                 <section class="Widget">
                     <h2 class="Widget-title">Opportunity Datasheet</h2>
-                    <div class="Widget-widgetControls"></div>
+                    <div class="Widget-widgetControls">Lead ID: <%= @opportunity.lead_id__c %></div>
                     <div class="Widget-widgetBody Widget-widget-body">
                         <div>
                             <h1 class="Dashboard-account--title"><%= @opportunity.name %></h1>

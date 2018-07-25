@@ -41,6 +41,7 @@ class Opportunity < ApplicationRecord
   alias_attribute :intelligence_question_012, :IQ012__c
   alias_attribute :created_at, :CreatedDate
   alias_attribute :partner_account_assigned__c, :Partner_Account_Assigned__c
+  alias_attribute :lead_id__c, :Lead_ID__c
 
   scope :with_campaign_of, -> (campaign_id) { where(campaign_id: campaign_id) }
   scope :with_partner_of, -> (partner_id) { joins(:campaign).where("Opportunity.partner__c = ?", partner_id) }
@@ -77,6 +78,7 @@ class Opportunity < ApplicationRecord
       meeting_date_time__c: meeting_date_time__c,
       is_otp_approved__c: is_otp_approved__c,
       registered_deal_num__c: registered_deal_num__c,
+      lead_id__c: lead_id__c,
       created_at: created_at
     }
   end
