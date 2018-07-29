@@ -2,7 +2,9 @@ class V2::PdfController < ApplicationController
 
   def print
     @opportunity ||= Opportunity.find_by(id: params[:opportunity_id])
-    @account ||= Account.find_by(id: params[:account_id])
+    @account ||= Account.find_by(id: params[:account_id]).to_h(with: [:contacts])
+    @contacts = @account[:contacts]
+
     respond_to do |format|
       format.pdf do
         html = render_to_string(

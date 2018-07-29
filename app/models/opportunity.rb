@@ -11,6 +11,7 @@ class Opportunity < ApplicationRecord
   has_many :opportunity_feedbacks
   has_many :attachments, foreign_key: "ParentId"
   has_many :opportunity_contact_roles, foreign_key: "OpportunityId"
+  has_many :contacts, through: :opportunity_contact_roles, foreign_key: "ContactId"
 
   alias_attribute :account_id, :AccountId
   alias_attribute :campaign_id, :CampaignId

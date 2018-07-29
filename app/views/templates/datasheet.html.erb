@@ -1,21 +1,18 @@
 <%
     address = ""
-    address.concat(@account.BillingStreet) if @account.BillingStreet.present?
-    address.concat(", ") if @account.BillingStreet.present? && @account.BillingCity.present?
-    address.concat(@account.BillingCity) if @account.BillingCity.present?
-    address.concat(", ") if @account.BillingCity.present? && @account.BillingState.present?
-    address.concat(@account.BillingState) if @account.BillingState.present?
-    address.concat(" ") if @account.BillingPostalCode.present?
-    address.concat(@account.BillingPostalCode) if @account.BillingPostalCode.present?
+    address.concat(@account[:BillingStreet]) if @account[:BillingStreet].present?
+    address.concat(", ") if @account[:BillingStreet].present? && @account[:BillingCity].present?
+    address.concat(@account[:BillingCity]) if @account[:BillingCity].present?
+    address.concat(", ") if @account[:BillingCity].present? && @account[:BillingState].present?
+    address.concat(@account[:BillingState]) if @account[:BillingState].present?
+    address.concat(" ") if @account[:BillingPostalCode].present?
+    address.concat(@account[:BillingPostalCode]) if @account[:BillingPostalCode].present?
 
     revenue = ""
-    revenue = number_to_currency(@account.annual_revenue, precision: 0) if @account.annual_revenue.present?
+    revenue = number_to_currency(@account[:annual_revenue], precision: 0) if @account[:annual_revenue].present?
 
     notes = ""
     notes = @opportunity.notes[0].body.html_safe if @opportunity.notes.any?
-
-    contacts = []
-    contacts = @account.contacts.uniq if @account.contacts.any?
 %>
 <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800);</style>
 <style>
@@ -137,9 +134,9 @@ body {
                     <div class="Widget-widgetBody Widget-widget-body">
                         <div>
                             <div>Address: <%= address %></div>
-                            <div>Industry: <%= @account.industry %></div>
+                            <div>Industry: <%= @account[:industry] %></div>
                             <div>Revenue: <%= revenue %></div>
-                            <div>Website: <%= @account.website %></div>
+                            <div>Website: <%= @account[:website] %></div>
                         </div>
                     </div>
                 </section>
@@ -148,7 +145,7 @@ body {
                     <div class="Widget-widgetControls"></div>
                     <div class="Widget-widgetBody Widget-widget-body">
                         <div>
-                            <%= @account.description %>
+                            <%= @account[:description] %>
                         </div>
                     </div>
                 </section>
@@ -158,12 +155,12 @@ body {
                     <div class="Widget-widgetBody Widget-widget-body">
                         <div>
                             <%
-                            contacts.each do |c|
+                            @contacts.each do |c|
                             %>
                             <div class="Contacts-container">
-                                <div class="Contacts-name"><%= c.name %>, <%= c.title %></div>
-                                <div><%= c.email %></div>
-                                <div><%= c.phone %></div>
+                                <div class="Contacts-name"><%= c[:name] %>, <%= c[:title] %></div>
+                                <div><%= c[:email] %></div>
+                                <div><%= c[:phone] %></div>
                             </div>
                             <%
                             end
