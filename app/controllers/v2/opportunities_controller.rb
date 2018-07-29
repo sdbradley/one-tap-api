@@ -37,7 +37,8 @@ private
         :end_date, 
         :partner__c, 
         :stage_name,
-        :campaign_id
+        :campaign_id,
+        :account_id
     )
   end
 
