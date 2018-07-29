@@ -45,15 +45,17 @@ class Opportunity < ApplicationRecord
   alias_attribute :lead_id__c, :Lead_ID__c
 
   scope :with_campaign_of, -> (campaign_id) { where(campaign_id: campaign_id) }
+  scope :with_account_partner_of, -> (account_id) { where(partner_account_assigned__c: account_id) }
   scope :with_partner_of, -> (partner_id) { joins(:campaign).where("Opportunity.partner__c = ?", partner_id) }
   scope :by_start_date, -> (date) { where("meeting_date_time__c >= ?", Time.at(date.to_i).to_datetime) }
   scope :by_end_date, -> (date) { where("meeting_date_time__c < ?", Time.at(date.to_i).to_datetime) }
   scope :by_stage, -> (stage_name) { where("StageName=?", stage_name) }
 
-  scope :search, -> (fields) {
+  scope :search, -> (fields) {  
     query = self
     query = query.with_campaign_of(fields[:campaign_id]) if fields[:campaign_id].present?
     query = query.with_partner_of(fields[:partner__c]) if fields[:partner__c].present?
+    query = query.with_account_partner_of(fields[:account_id]) if fields[:account_id].present?
     query = query.by_stage(fields[:stage_name]) if fields[:stage_name].present?
     query = query.by_start_date(fields[:start_date]) if fields[:start_date].present?
     query = query.by_end_date(fields[:end_date]) if fields[:end_date].present?
