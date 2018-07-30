@@ -6,7 +6,7 @@ class V2::AuthenticationController < ApplicationController
       user.generate_reset_token
       user.force_password_change = false
       user.save
-      #EmailService.send_force_password_email(user, request.referer) unless Rails.env.test?
+      EmailService.send_force_password_email(user) unless Rails.env.test?
       standard_response_for ServiceResponse.new(status: 412, status_code: 412, body: { email: params[:email], errors: "User must change password" })
     elsif user.try(:authenticate, params[:password])
       render json: JWT.encode(
