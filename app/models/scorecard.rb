@@ -21,10 +21,8 @@ class Scorecard
       query = <<-SQL
         select a.name, o.Partner_Account_Assigned__c as partner__c, o.StageName as stage_name, COUNT(*) as total
         from Opportunity o
-        inner join Account a on a.id=o.Partner_Account_Assigned__c
+        left join Account a on a.id=o.Partner_Account_Assigned__c
         where o.CampaignId='#{campaign_id}'
-        and o.Meeting_Date_Time__c >= '#{start_date}'
-        and o.Meeting_Date_Time__c <= '#{end_date}'
         group by a.Name, o.Partner_Account_Assigned__c, o.StageName
         order by a.Name;
       SQL
