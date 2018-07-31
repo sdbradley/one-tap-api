@@ -58,11 +58,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              'smtp.mandrillapp.com',
     port:                 587,
     domain:               'ontappipeline.com',
-    user_name:            '<username>',
-    password:             '<password>',
+    user_name:            'bob.drozdowski@ontappipeline.com',
+    password:             '_8GVGdqDRAyK9KZ3gMP1iQ',
     authentication:       'plain',
     enable_starttls_auto: true
   }
