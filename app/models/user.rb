@@ -67,16 +67,15 @@ class User < ApplicationRecord
   end
 
   def validate!(token)
-    if is_valid_token?(token)
+    if valid_token?(token)
       self.reset_token = nil
-      self.is_validated = true
       save
     else
       false
     end
   end
 
-  def is_valid_token?(token)
+  def valid_token?(token)
     token == reset_token
   end
 
