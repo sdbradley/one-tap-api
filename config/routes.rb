@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   scope "api" do
     namespace "v2" do
       post "authentication", to: "authentication#create"
+      namespace :public do
+        post "/users/password", action: "reset_password"
+      end
       resources :accounts, only: [:index, :show]
       resources :attachments, only: [:index]
       resources :opportunities, only: [:index, :show]
