@@ -37,7 +37,7 @@ class V2::CampaignsController < ApplicationController
 
     def index_opportunities_export
       opportunities = Opportunity.with_campaign_of(params[:id]).order(meeting_date_time__c: :desc)
-      export_opportunities(opportunities)
+      export_opportunities(opportunities.map(&:to_h))
     end
 
   private

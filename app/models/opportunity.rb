@@ -78,6 +78,8 @@ class Opportunity < ApplicationRecord
       partner__c: partner__c,
       partner_account_assigned__c: partner_account_assigned__c,
       account: account.to_h,
+      partner_name: account&.name,
+      formatted_meeting_time: formatted_meeting_date_time__c,
       meeting_date_time__c: meeting_date_time__c,
       is_otp_approved__c: is_otp_approved__c,
       registered_deal_num__c: registered_deal_num__c,
@@ -122,13 +124,17 @@ class Opportunity < ApplicationRecord
     }
   end
 
+  def formatted_meeting_date_time__c
+    meeting_date_time__c.in_time_zone("America/New_York").strftime("%m/%d/%Y %I:%M %p %Z")
+  end
+
   def self.to_csv(data)
     return nil unless data.present?
-    attributes = %w(Name Partner__c StageName Meeting_Date_Time__c)
+    attributes = %w(name partner_name stage_name formatted_meeting_time)
     CSV.generate(headers: true) do |csv|
       csv << attributes
       data.each do |o|
-        csv << attributes.map { |attr| o[attr] }
+        csv << attributes.map { |attr| o[attr.to_sym] }
       end
     end
   end
