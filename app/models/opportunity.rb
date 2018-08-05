@@ -113,6 +113,7 @@ class Opportunity < ApplicationRecord
       intelligence_question_010: intelligence_question_010,
       intelligence_question_011: intelligence_question_011,
       intelligence_question_012: intelligence_question_012,
+      lead_id__c: lead_id__c,
       created_at: created_at,
       notes: notes.map(&:to_h),
       contact_roles: opportunity_contact_roles.map(&:to_h),
