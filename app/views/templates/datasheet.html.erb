@@ -1,12 +1,12 @@
 <%
     address = ""
-    address.concat(@account[:BillingStreet]) if @account[:BillingStreet].present?
-    address.concat(", ") if @account[:BillingStreet].present? && @account[:BillingCity].present?
-    address.concat(@account[:BillingCity]) if @account[:BillingCity].present?
-    address.concat(", ") if @account[:BillingCity].present? && @account[:BillingState].present?
-    address.concat(@account[:BillingState]) if @account[:BillingState].present?
-    address.concat(" ") if @account[:BillingPostalCode].present?
-    address.concat(@account[:BillingPostalCode]) if @account[:BillingPostalCode].present?
+    address.concat(@account[:billing_street]) if @account[:billing_street].present?
+    address.concat(", ") if @account[:billing_street].present? && @account[:billing_city].present?
+    address.concat(@account[:billing_city]) if @account[:billing_city].present?
+    address.concat(", ") if @account[:billing_city].present? && @account[:billing_state].present?
+    address.concat(@account[:billing_state]) if @account[:billing_state].present?
+    address.concat(" ") if @account[:billing_postal_code].present?
+    address.concat(@account[:billing_postal_code]) if @account[:billing_postal_code].present?
 
     revenue = ""
     revenue = number_to_currency(@account[:annual_revenue], precision: 0) if @account[:annual_revenue].present?
@@ -127,7 +127,7 @@ body {
                             <h1 class="Dashboard-account--title"><%= @opportunity.name %></h1>
                         </div>
                         <div>
-                            Initial Discovery Call scheduled for: <%= @opportunity.meeting_date_time__c.strftime("%m/%d/%Y %I:%M %p %Z") %>
+                            Initial Discovery Call scheduled for: <%= @opportunity.meeting_date_time__c.in_time_zone("America/New_York").strftime("%m/%d/%Y %I:%M %p %Z") %>
                         </div>
                     </div>
                 </section>
