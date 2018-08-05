@@ -10,7 +10,7 @@ class V2::CampaignsController < ApplicationController
     def show
         campaigns = Campaign.where(id: params[:id])
         notes = Note.get(permitted_params).limit(10)
-        opportunities = Opportunity.with_campaign_of(params[:id]).order(meeting_date_time__c: :desc).limit(100)
+        opportunities = Opportunity.with_campaign_of(params[:id]).by_stage("Upcoming").by_date(Date.today).order(:meeting_date_time__c).limit(100)
         response_body = {
             campaigns: campaigns.map(&:to_h),
             notes: notes.map(&:to_h),
