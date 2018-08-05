@@ -49,6 +49,7 @@ class Opportunity < ApplicationRecord
   scope :with_partner_of, -> (partner_id) { joins(:campaign).where("Opportunity.partner__c = ?", partner_id) }
   scope :by_start_date, -> (date) { where("meeting_date_time__c >= ?", Time.at(date.to_i).to_datetime) }
   scope :by_end_date, -> (date) { where("meeting_date_time__c < ?", Time.at(date.to_i).to_datetime) }
+  scope :by_date, -> (date) { where("meeting_date_time__c >= ?", date) }
   scope :by_stage, -> (stage_name) { where("StageName=?", stage_name) }
 
   scope :search, -> (fields) {  
