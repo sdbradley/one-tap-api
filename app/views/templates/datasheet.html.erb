@@ -161,9 +161,10 @@ body {
                             @contacts.each do |c|
                             %>
                             <div class="Contacts-container">
-                                <div class="Contacts-name"><%= c[:name] %>, <%= c[:title] %></div>
+                                <div class="Contacts-name"><%= c[:name] %>, <%= c[:title] %><% if (c[:is_primary]) %> (primary)<% end %></div>
                                 <div><%= c[:email] %></div>
                                 <div><%= c[:phone] %></div>
+                                <div><%= c[:role] %></div>
                             </div>
                             <%
                             end

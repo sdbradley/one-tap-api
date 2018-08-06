@@ -119,10 +119,18 @@ class Opportunity < ApplicationRecord
       lead_id__c: lead_id__c,
       created_at: created_at,
       notes: notes.map(&:to_h),
+      contacts: opportunity_contacts,
       contact_roles: opportunity_contact_roles.map(&:to_h),
       feedback: opportunity_feedbacks.map(&:to_h),
       attachments: attachments.map(&:to_h)
     }
+  end
+
+  def opportunity_contacts
+    a = account&.contacts&.map(&:to_h)
+    o = opportunity_contact_roles.map(&:to_h)
+    return (o + a).uniq { |c| c[:email] } if a.present?
+    o
   end
 
   def formatted_meeting_date_time__c

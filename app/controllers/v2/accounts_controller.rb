@@ -17,7 +17,7 @@ class V2::AccountsController < AuthorizedController
     def show
         accounts = Account.where(id: params[:id])
         response_body = {
-            accounts: accounts.map(&:to_h)
+            accounts: accounts.map(&:to_detail_h)
         }
         standard_response_for ServiceResponse.new(status: :success, status_code: 200, body: response_body.to_json)
     end
