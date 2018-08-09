@@ -4,6 +4,8 @@ class V2::PdfController < ApplicationController
     @opportunity ||= Opportunity.find_by(id: params[:opportunity_id])
     @account ||= Account.find_by(id: params[:account_id]).to_h(with: [:contacts])
     @contacts = @opportunity.opportunity_contacts
+    campaign = Campaign.find_by(id: @opportunity.campaign_id)
+    @questions = IntelligenceQuestion.where(campaign_type: campaign.type)
 
     respond_to do |format|
       format.pdf do

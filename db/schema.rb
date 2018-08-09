@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180729234435) do
+ActiveRecord::Schema.define(version: 20180809021716) do
 
   create_table "AcceptedEventRelation", primary_key: "Id", id: :string, limit: 18, collation: "latin2_general_ci", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "RelationId",         limit: 18, collation: "latin2_general_ci"
@@ -10111,6 +10111,15 @@ ActiveRecord::Schema.define(version: 20180729234435) do
     t.string   "contact_id"
     t.index ["account_id"], name: "index_contacts_on_account_id", using: :btree
     t.index ["contact_id"], name: "index_contacts_on_contact_id", using: :btree
+  end
+
+  create_table "intelligence_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "question"
+    t.string   "question_number"
+    t.string   "campaign_type"
+    t.boolean  "is_deleted"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "leads", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
