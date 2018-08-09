@@ -1,0 +1,2 @@
+class IntelligenceQuestion < ApplicationRecord
+end
