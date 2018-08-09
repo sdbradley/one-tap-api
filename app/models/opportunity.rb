@@ -104,6 +104,7 @@ class Opportunity < ApplicationRecord
       next_step: next_step,
       partner__c: partner__c,
       meeting_date_time__c: meeting_date_time__c,
+      intelligence_questions: questions,
       intelligence_question_001: intelligence_question_001,
       intelligence_question_002: intelligence_question_002,
       intelligence_question_003: intelligence_question_003,
@@ -131,6 +132,11 @@ class Opportunity < ApplicationRecord
     o = opportunity_contact_roles.map(&:to_h)
     return (o + a).uniq { |c| c[:email] } if a.present?
     o
+  end
+
+  def questions
+    return [] unless campaign.present?
+    IntelligenceQuestion.where(campaign_type: campaign.type)
   end
 
   def formatted_meeting_date_time__c
