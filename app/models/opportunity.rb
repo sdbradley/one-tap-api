@@ -44,6 +44,8 @@ class Opportunity < ApplicationRecord
   alias_attribute :partner_account_assigned__c, :Partner_Account_Assigned__c
   alias_attribute :lead_id__c, :Lead_ID__c
 
+  default_scope { where(is_otp_approved__c: true) }
+
   scope :with_campaign_of, -> (campaign_id) { where(campaign_id: campaign_id) }
   scope :with_account_partner_of, -> (account_id) { where(partner_account_assigned__c: account_id) }
   scope :with_partner_of, -> (partner_id) { joins(:campaign).where("Opportunity.partner__c = ?", partner_id) }
