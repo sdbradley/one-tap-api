@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post "authentication", to: "authentication#create"
       namespace :public do
         post "/users/password", action: "reset_password"
+        post "/users/create", action: "create_user"
       end
       resources :accounts, only: [:index, :show]
       resources :attachments, only: [:index]
