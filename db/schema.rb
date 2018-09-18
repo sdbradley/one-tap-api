@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180809021716) do
+ActiveRecord::Schema.define(version: 20180916213731) do
 
   create_table "AcceptedEventRelation", primary_key: "Id", id: :string, limit: 18, collation: "latin2_general_ci", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "RelationId",         limit: 18, collation: "latin2_general_ci"
@@ -1038,6 +1038,11 @@ ActiveRecord::Schema.define(version: 20180809021716) do
     t.text     "Description",        limit: 65535
     t.datetime "BackupCreatedDate"
     t.datetime "BackupModifiedDate"
+    t.index ["CreatedById"], name: "CSIX_CreatedById", using: :btree
+    t.index ["IsDeleted", "SystemModstamp"], name: "CSIX_4DELETECHECK", using: :btree
+    t.index ["LastModifiedById"], name: "CSIX_LastModifiedById", using: :btree
+    t.index ["OwnerId"], name: "CSIX_OwnerId", using: :btree
+    t.index ["ParentId"], name: "CSIX_ParentId", using: :btree
     t.index ["SystemModstamp"], name: "CSIX_SystemModstamp", using: :btree
   end
 
@@ -3243,7 +3248,7 @@ ActiveRecord::Schema.define(version: 20180809021716) do
     t.index ["SystemModstamp"], name: "CSIX_SystemModstamp", using: :btree
   end
 
-  create_table "CopyForceConfig", primary_key: "property", id: :string, limit: 128, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "CopyForceConfig", primary_key: "property", id: :string, limit: 128, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "propertyValue", limit: 128, null: false
   end
 
@@ -3300,7 +3305,7 @@ ActiveRecord::Schema.define(version: 20180809021716) do
     t.decimal  "elapsedTime",            precision: 18, scale: 3
   end
 
-  create_table "CopyForceTable", primary_key: "name", id: :string, limit: 64, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "CopyForceTable", primary_key: "name", id: :string, limit: 64, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "copyForceName",       limit: 64,  null: false
     t.string   "label",               limit: 128, null: false
     t.string   "labelPlural",         limit: 128, null: false
@@ -3328,7 +3333,7 @@ ActiveRecord::Schema.define(version: 20180809021716) do
     t.datetime "maxTimeboxTimestamp"
   end
 
-  create_table "CopyForceTableChildRelat", primary_key: ["parentTableName", "childTableName", "childFieldName"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "CopyForceTableChildRelat", primary_key: ["parentTableName", "childTableName", "childFieldName"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "parentTableName",     limit: 64, null: false
     t.string  "childTableName",      limit: 64, null: false
     t.string  "childFieldName",      limit: 64, null: false
@@ -3337,7 +3342,7 @@ ActiveRecord::Schema.define(version: 20180809021716) do
     t.boolean "restrictedDelete"
   end
 
-  create_table "CopyForceTableField", primary_key: ["tableName", "name"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "CopyForceTableField", primary_key: ["tableName", "name"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                  limit: 64,         null: false
     t.string   "copyForceName",         limit: 64,         null: false
     t.string   "tableName",             limit: 64,         null: false

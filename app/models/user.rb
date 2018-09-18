@@ -89,7 +89,8 @@ class User < ApplicationRecord
   end
 
   def self.create_user(params)
-    params = params.merge({password: SecureRandom.base64, is_approved: 1, is_deleted: 0})
+    params = params.merge({password: SecureRandom.base64}) unless params.has_key?(:password)
+    params = params.merge({is_approved: 1, is_deleted: 0})
     user = User.create!(params)
     ServiceResponse.new(status: :success, status_code: 200, body: {user: user.to_h})
   end

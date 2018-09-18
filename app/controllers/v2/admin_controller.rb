@@ -29,7 +29,7 @@ class V2::AdminController < ApplicationController
   end
 
   def permitted_params
-    params.permit(:first_name, :last_name, :email_address, :user_name, :account_id, :search_term)
+    params.permit(:first_name, :last_name, :email_address, :user_name, :password, :account_id, :search_term)
   end
 
 end
