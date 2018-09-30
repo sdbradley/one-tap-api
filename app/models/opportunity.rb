@@ -40,6 +40,9 @@ class Opportunity < ApplicationRecord
   alias_attribute :intelligence_question_010, :IQ010__c
   alias_attribute :intelligence_question_011, :IQ011__c
   alias_attribute :intelligence_question_012, :IQ012__c
+  alias_attribute :intelligence_question_013, :IQ013__c
+  alias_attribute :intelligence_question_014, :IQ014__c
+  alias_attribute :intelligence_question_015, :IQ015__c
   alias_attribute :created_at, :CreatedDate
   alias_attribute :partner_account_assigned__c, :Partner_Account_Assigned__c
   alias_attribute :lead_id__c, :Lead_ID__c
