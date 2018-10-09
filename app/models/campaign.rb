@@ -1,4 +1,5 @@
 class Campaign < ApplicationRecord
+  include Activateable
 
   self.table_name = "Campaign"
   self.primary_key = "Id"
